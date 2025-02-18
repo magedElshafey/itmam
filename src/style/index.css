@@ -1,0 +1,124 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+:root {
+    --babyBlueColor: #00F9FF;
+    --mainColor: #3D2571;
+}
+
+body {
+    overflow-x: hidden;
+    text-transform: capitalize;
+    font-family: 'Cairo', sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+/* default classes */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: bold;
+}
+
+h1 {
+    font-size: 2.125rem;
+}
+
+h2 {
+    font-size: 1.875rem;
+}
+
+h3 {
+    font-size: 1.5rem;
+}
+
+h4 {
+    font-size: 1.25rem;
+}
+
+h5 {
+    font-size: 1.125rem;
+}
+
+h6 {
+    font-size: 1rem;
+}
+
+@media screen and (max-width: 768px) {
+    h1 {
+        font-size: 1.5rem;
+    }
+
+}
+
+@media screen and (max-width: 480px) {
+    h2 {
+        font-size: 1.25rem;
+    }
+}
+
+@media screen and (max-width: 320px) {
+    h3 {
+        font-size: 1.125rem;
+    }
+}
+
+@media screen and (max-width: 320px) {
+    h4 {
+        font-size: 1.125rem;
+    }
+
+}
+
+@media screen and (max-width: 320px) {
+    h5 {
+        font-size: 1rem;
+    }
+}
+
+@media screen and (max-width: 320px) {
+    h6 {
+        font-size: 0.875rem;
+    }
+}
+
+a.active {
+    font-weight: bold;
+    color: var(--babyBlueColor) !important;
+    text-decoration: underline;
+}
+
+a.active a {
+    color: black !important;
+}
+
+a.active:has(a.active) {
+    font-weight: bold;
+    color: var(--mainColor) !important;
+    text-decoration: underline;
+}
+
+.main {
+    min-height: calc(100vh - 338px);
+}
+
+@media screen and (max-width: 768px) {
+    .main {
+        min-height: calc(100vh - 540px);
+    }
+
+}
