@@ -10,7 +10,7 @@ const MainCard: React.FC<MainCardProps> = ({ data, index }) => {
   return (
     <div
       data-aos="fade-up"
-      data-aos-delay={index * 150}
+      data-aos-delay={index * 50}
       className="w-full bg-custom-gradient p-4 rounded-md flex items-center text-white text-center"
     >
       <div className="w-full h-full flex flex-col items-center justify-center">

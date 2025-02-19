@@ -1,7 +1,15 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
+@layer utilities {
+    .transform-style-3d {
+      transform-style: preserve-3d;
+    }
+  
+    .backface-hidden {
+      backface-visibility: hidden;
+    }
+  }
 * {
     box-sizing: border-box;
     padding: 0;

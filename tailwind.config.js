@@ -15,6 +15,12 @@ export default {
         "custom-gradient":
           "linear-gradient(to bottom right, #A56FCC, #3D2571, #000C40 , #994ECC)",
       },
+      transformStyle: {
+        "3d": "preserve-3d",
+      }, 
+      backfaceVisibility: {
+        hidden: "hidden",
+      }
     },
   },
   plugins: [],

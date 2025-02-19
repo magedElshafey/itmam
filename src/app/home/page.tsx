@@ -10,6 +10,9 @@ import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import Vission from "../../components/home/Vission";
 import vission from "../../assets/vission.png";
+import Message from "../../components/home/Message";
+import Contact from "../../components/home/Contact";
+import RegisterInterst from "../../components/home/RegisterInterst";
 const HomePage = () => {
   const { t } = useTranslation();
   return (
@@ -61,6 +64,18 @@ const HomePage = () => {
             title="الرؤية"
             descreption="نرغب في أن نصبح من أوائل الشركات المالية من حيث حجم الأصول المدارة"
           />
+          <div className="my-6 md:my-8">
+            <Title title="message" />
+            <Message />
+          </div>
+          <div className="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-0">
+            <RegisterInterst /> 
+            <div className="w-full md:w-1/2">
+              <div className="w-full md:w-3/4 mx-auto">
+                <Contact /> 
+              </div>
+            </div>
+          </div>
         </div>
       )}
     </>

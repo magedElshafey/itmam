@@ -22,7 +22,7 @@ const Hero: React.FC<HeroProps> = ({
     <div className="overflow-x-hidden">
       <div className="relative w-screen h-[500px] lg:h-[600px] overflow-hidden">
         <img src={image} alt="hero" className="w-full h-full object-cover" />
-        <div className="absolute top-0 left-0 w-full h-full bg-black bg-opacity-30">
+        <div className="absolute top-0 left-0 w-full h-full bg-black bg-opacity-40">
           <div className="container mx-auto px-8 md:px-16 h-full">
             <div
               className={`w-full h-full flex items-center ${
