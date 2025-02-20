@@ -3,7 +3,9 @@
     "noImplicitAny": false,
     "strict": false,
     "skipLibCheck": true,
-    "noEmit": false
+    "noEmit": false , 
+     "module": "ESNext",
+    "moduleResolution": "Node"
   },
   "files": [],
   "references": [

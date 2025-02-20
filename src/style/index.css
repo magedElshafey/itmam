@@ -1,15 +1,59 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+    font-family: "Bahij Insan";
+    src: url("../assets/fonts/ar/Bahij\ Insan\ Regular\ .ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Bahij Insan";
+    src: url("../assets/fonts/ar/Bahij_Insan-Bold.ttf") format("truetype");
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Gucina";
+    src: url("../assets/fonts/en/gucina-regular.otf") format("opentype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Gucina";
+    src: url("../assets/fonts/en/gucina-medium.otf") format("opentype");
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Gucina";
+    src: url("../assets/fonts/en/gucina-semibold.otf") format("opentype");
+    font-weight: 600;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Gucina";
+    src: url("../assets/fonts/en/gucina-bold.otf") format("opentype");
+    font-weight: bold;
+    font-style: normal;
+}
+
 @layer utilities {
     .transform-style-3d {
-      transform-style: preserve-3d;
+        transform-style: preserve-3d;
     }
-  
+
     .backface-hidden {
-      backface-visibility: hidden;
+        backface-visibility: hidden;
     }
-  }
+}
+
 * {
     box-sizing: border-box;
     padding: 0;
@@ -24,7 +68,7 @@
 body {
     overflow-x: hidden;
     text-transform: capitalize;
-    font-family: 'Cairo', sans-serif;
+
 }
 
 html {
@@ -105,7 +149,6 @@ h6 {
 }
 
 a.active {
-    font-weight: bold;
     color: var(--babyBlueColor) !important;
     text-decoration: underline;
 }

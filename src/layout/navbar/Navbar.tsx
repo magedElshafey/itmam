@@ -16,7 +16,22 @@ import Sidebar from "../Sidebar";
 // utils
 import createSlug from "../../utils/createSlug";
 import CallToAction from "../callToAction/CallToAction";
-const Navbar = () => {
+interface NavbarProps {
+  facebook?: string;
+  instagram?: string;
+  youtube?: string;
+  tiktok?: string;
+  whatsapp?: string;
+  x?: string;
+}
+const Navbar: React.FC<NavbarProps> = ({
+  facebook,
+  instagram,
+  youtube,
+  tiktok,
+  whatsapp,
+  x,
+}) => {
   const { t } = useTranslation();
   const {
     states: { showSidebar, activeDropDown, scrolling, language },
@@ -35,85 +50,77 @@ const Navbar = () => {
           scrolling ? "bg-white shadow-md" : "bg-transparent"
         }`}
       >
-        <div className="container mx-auto px-8 md:px-16 flex items-center justify-between gap-12">
-          <Logo logo={scrolling ? darkLogo : logoWhite} />
-          <ul className="hidden md:flex items-center gap-8 lg:gap-16 text-nowrap">
-            {navLinks?.map((item: Nav, index: number) => (
-              <li key={index}>
-                <NavLink
-                  onMouseEnter={() => setActiveDropDown(index)}
-                  onMouseLeave={() => setActiveDropDown(null)}
-                  to={item?.link}
-                  className={`duration-300 ${
-                    scrolling
-                      ? "text-black hover:text-mainColor"
-                      : "text-white hover:text-babyBlueColor"
-                  }  hover:underline  flex items-center gap-3 relative group`}
-                >
-                  <span> {t(item.name)}</span>
-                  {item?.list && item?.list?.length && (
-                    <>
-                      <IoIosArrowDown size={15} />
-                      <ul
-                        className={`absolute top-full right-0 bg-white p-3 shadow-md transition-opacity duration-300 min-w-full rounded-lg text-start ${
-                          activeDropDown === index
-                            ? "opacity-100 visible"
-                            : "opacity-0 invisible"
-                        }`}
-                      >
-                        {item?.list?.map((subItem: Nav, subIndex: number) => (
-                          <NavLink
-                            key={subIndex}
-                            className="block mb-3 text-mainColor duration-300 hover:underline"
-                            to={`/services/${createSlug(subItem?.name)}`}
-                            state={{
-                              serviceId: subItem?.id,
-                            }}
-                            onClick={() => setActiveDropDown(null)}
-                          >
-                            {t(subItem?.name)}
-                          </NavLink>
-                        ))}
-                      </ul>
-                    </>
-                  )}
-                </NavLink>
-              </li>
-            ))}
-          </ul>
-          <button
-            onClick={() =>
-              changeLanguageHandler(language === "ar" ? "en" : "ar")
-            }
-            className={`hidden md:flex items-center uppercase gap-4 ${
-              scrolling ? "text-darkMainColor" : "text-white"
-            }`}
-          >
-            <span>|</span>
-            <span>{language === "ar" ? "en" : "ar"}</span>
-          </button>
-          <div className="hidden md:block">
-            <CallToAction scrolling={scrolling} />
-          </div>
-
-          <div className="flex items-center gap-3 md:hidden">
-            <button onClick={handleShowSidebar}>
-              <IoMdMenu
-                className={scrolling ? "text-darkMainColor" : "text-white"}
-                size={30}
-              />
-            </button>
-            <button
-              onClick={() =>
-                changeLanguageHandler(language === "ar" ? "en" : "ar")
-              }
-              className={`flex items-center uppercase gap-4 ${
-                scrolling ? "text-darkMainColor" : "text-white"
-              }`}
-            >
-              <span>|</span>
-              <span>{language === "ar" ? "en" : "ar"}</span>
-            </button>
+        <div className="container mx-auto px-6 lg:px-12">
+          <div className="flex items-center justify-between gap-4 lg:gap-6">
+            <Logo logo={scrolling ? darkLogo : logoWhite} />
+            <ul className="hidden lg:flex items-center gap-4 lg:gap-6 text-nowrap">
+              {navLinks?.map((item: Nav, index: number) => (
+                <li key={index}>
+                  <NavLink
+                    onMouseEnter={() => setActiveDropDown(index)}
+                    onMouseLeave={() => setActiveDropDown(null)}
+                    to={item?.link}
+                    className={`duration-300 ${
+                      scrolling
+                        ? "text-black hover:text-mainColor"
+                        : "text-white hover:text-babyBlueColor"
+                    }  hover:underline  flex items-center gap-3 relative group text-base md:text-md  xl:text-xl`}
+                  >
+                    <span> {t(item.name)}</span>
+                    {item?.list && item?.list?.length && (
+                      <>
+                        <IoIosArrowDown size={15} />
+                        <ul
+                          className={`absolute top-full right-0 bg-white p-3 shadow-md transition-opacity duration-300 min-w-full rounded-lg text-start ${
+                            activeDropDown === index
+                              ? "opacity-100 visible"
+                              : "opacity-0 invisible"
+                          }`}
+                        >
+                          {item?.list?.map((subItem: Nav, subIndex: number) => (
+                            <NavLink
+                              key={subIndex}
+                              className="block mb-3 text-mainColor duration-300 hover:underline"
+                              to={`/services/${createSlug(subItem?.name)}`}
+                              state={{
+                                serviceId: subItem?.id,
+                              }}
+                              onClick={() => setActiveDropDown(null)}
+                            >
+                              {t(subItem?.name)}
+                            </NavLink>
+                          ))}
+                        </ul>
+                      </>
+                    )}
+                  </NavLink>
+                </li>
+              ))}
+            </ul>
+            <div className="flex items-center gap-3">
+              <div className="hidden lg:block">
+                <CallToAction scrolling={scrolling} />
+              </div>
+              <button onClick={handleShowSidebar}>
+                <IoMdMenu
+                  className={`lg:hidden ${
+                    scrolling ? "text-darkMainColor" : "text-white"
+                  }`}
+                  size={30}
+                />
+              </button>
+              <button
+                onClick={() =>
+                  changeLanguageHandler(language === "ar" ? "en" : "ar")
+                }
+                className={`flex items-center uppercase gap-4 ${
+                  scrolling ? "text-darkMainColor" : "text-white"
+                }`}
+              >
+                <span>|</span>
+                <span>{language === "ar" ? "en" : "ar"}</span>
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -121,6 +128,12 @@ const Navbar = () => {
         showSidebar={showSidebar}
         setShowSidebar={setShowSidebar}
         sidebarRef={sidebarRef}
+        facebook={facebook}
+        instagram={instagram}
+        youtube={youtube}
+        tiktok={tiktok}
+        whatsapp={whatsapp}
+        x={x}
       />
     </>
   );

@@ -22,7 +22,7 @@ const CallToAction: React.FC<CallToActionProps> = ({
       onClick={handleClick}
       className={` ${
         scrolling ? " bg-darkMainColor text-white" : "bg-white"
-      } py-3 px-6 rounded-3xl flex items-center justify-center duration-300 hover:bg-babyBlueColor`}
+      } p-4 text-nowrap  rounded-3xl flex items-center justify-center duration-300 hover:bg-babyBlueColor`}
       href="#contact"
     >
       {t("ask for consultation")}

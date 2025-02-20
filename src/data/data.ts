@@ -1,17 +1,8 @@
 // types
 import { Nav } from "../types/Nav";
-import { Socials } from "../types/Socials";
 import { Card } from "../types/Card";
 // assets
-import {
-  FaFacebook,
-  FaInstagram,
-  FaBehance,
-  FaLinkedin,
-  FaSnapchatGhost,
-  FaWhatsapp,
-} from "react-icons/fa";
-import { FaXTwitter } from "react-icons/fa6";
+
 
 export const navLinks: Nav[] = [
   {
@@ -143,53 +134,22 @@ export const footerLinks: Nav[] = [
         link: "/terms",
         id: 4,
       },
+      {
+        name: "Disclosure policy",
+        link: "/policy",
+        id: 5,
+      },
     ],
   },
 ];
-export const socials: Socials[] = [
-  {
-    name: "whatsapp",
-    url: "https://wa.me/+201022153359",
-    icon: FaWhatsapp,
-  },
-  {
-    name: "facebook",
-    url: "https://www.facebook.com/",
-    icon: FaFacebook,
-  },
-  {
-    name: "twitter",
-    url: "https://www.twitter.com/",
-    icon: FaXTwitter,
-  },
-  {
-    name: "instagram",
-    url: "https://www.instagram.com/",
-    icon: FaInstagram,
-  },
-  {
-    name: "behance",
-    url: "https://www.behance.com/",
-    icon: FaBehance,
-  },
-  {
-    name: "linkedin",
-    url: "https://www.linkedin.com/",
-    icon: FaLinkedin,
-  },
-  {
-    name: "snapchat",
-    url: "https://www.snapchat.com/",
-    icon: FaSnapchatGhost,
-  },
-];
+
 export const mainSercices: Card[] = [
   {
     id: 1,
     title: "الاستشارات المالية",
     descreption:
       "خدمات الاستشارات المالية تشمل مجموعة متنوعة من الخدمات المالية والاستثمارية التي تقدمها الشركات والمؤسسات المتخصصة للعملاء الذين يبحثون عن الإرشاد والاستشارات فيما يتعلق بالشؤون المالية والاستثمارية",
-    btnText: "المزيد",
+    btnText: "more",
     path: "/services",
   },
   {
@@ -197,12 +157,12 @@ export const mainSercices: Card[] = [
     title: "الخدمات المصرفيةالاستثمارية",
     descreption:
       "خدمة الطرح والإدراج في السوق الموازية تشير عمومًا إلى عملية إدراج الشركات في الأسواق المالية البديلة أو الموازية",
-    btnText: "المزيد",
+    btnText: "more",
     path: "/services",
   },
   {
     id: 3,
-    btnText: "المزيد",
+    btnText: "more",
     path: "/services",
     title: "إدارة الأصول",
     descreption:
@@ -213,7 +173,7 @@ export const mainSercices: Card[] = [
     title: "الاستشارات المالية",
     descreption:
       "خدمات الاستشارات المالية تشمل مجموعة متنوعة من الخدمات المالية والاستثمارية التي تقدمها الشركات والمؤسسات المتخصصة للعملاء الذين يبحثون عن الإرشاد والاستشارات فيما يتعلق بالشؤون المالية والاستثمارية",
-    btnText: "المزيد",
+    btnText: "more",
     path: "/services",
   },
   {
@@ -221,12 +181,12 @@ export const mainSercices: Card[] = [
     title: "الخدمات المصرفيةالاستثمارية",
     descreption:
       "خدمة الطرح والإدراج في السوق الموازية تشير عمومًا إلى عملية إدراج الشركات في الأسواق المالية البديلة أو الموازية",
-    btnText: "المزيد",
+    btnText: "more",
     path: "/services",
   },
   {
     id: 6,
-    btnText: "المزيد",
+    btnText: "more",
     path: "/services",
     title: "إدارة الأصول",
     descreption:
@@ -237,7 +197,7 @@ export const mainSercices: Card[] = [
     title: "الاستشارات المالية",
     descreption:
       "خدمات الاستشارات المالية تشمل مجموعة متنوعة من الخدمات المالية والاستثمارية التي تقدمها الشركات والمؤسسات المتخصصة للعملاء الذين يبحثون عن الإرشاد والاستشارات فيما يتعلق بالشؤون المالية والاستثمارية",
-    btnText: "المزيد",
+    btnText: "more",
     path: "/services",
   },
   {
@@ -245,12 +205,12 @@ export const mainSercices: Card[] = [
     title: "الخدمات المصرفيةالاستثمارية",
     descreption:
       "خدمة الطرح والإدراج في السوق الموازية تشير عمومًا إلى عملية إدراج الشركات في الأسواق المالية البديلة أو الموازية",
-    btnText: "المزيد",
+    btnText: "more",
     path: "/services",
   },
   {
     id: 9,
-    btnText: "المزيد",
+    btnText: "more",
     path: "/services",
     title: "إدارة الأصول",
     descreption:

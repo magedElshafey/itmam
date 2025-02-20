@@ -17,7 +17,7 @@ const useNavbarLogic = () => {
   };
   useEffect(() => {
     const handleScroll = () => {
-      setScrolling(window.scrollY > 50);
+      setScrolling(window.scrollY > 30);
     };
     window.addEventListener("scroll", handleScroll);
     return () => {

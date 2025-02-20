@@ -1,35 +1,35 @@
-import { Card } from "../../../types/Card";
 import { GoArrowUpLeft } from "react-icons/go";
 import createSlug from "../../../utils/createSlug";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import { MainServices } from "../../../types/MainServices";
 interface MainCardProps {
-  data: Card;
-  index: number;
+  data: MainServices;
+  index?: number;
 }
-const MainCard: React.FC<MainCardProps> = ({ data, index }) => {
+const MainCard: React.FC<MainCardProps> = ({ data }) => {
+  const { t } = useTranslation();
   return (
-    <div
-      data-aos="fade-up"
-      data-aos-delay={index * 50}
-      className="w-full bg-custom-gradient p-4 rounded-md flex items-center text-white text-center"
-    >
+    <div className="w-full bg-custom-gradient p-4 rounded-md flex items-center text-white text-center">
       <div className="w-full h-full flex flex-col items-center justify-center">
         <p className="text-md md:text-lg lg:text-xl xl:text-2xl text-center mb-3 font-bold">
-          {data?.title}
+          {data?.name}
         </p>
         <p className="text-center leading-relaxed">
-          {data?.descreption?.substring(0, 100)}{" "}
-          {data?.descreption?.length > 100 ? "..." : ""}
+          {data?.description?.substring(0, 100)}{" "}
+          {data?.description?.length > 100 ? "..." : ""}
         </p>
         <Link
-          to={`${data?.path}/${createSlug(data?.title)}`}
+          to={`/services/${
+            data?.parent_id ? createSlug(data?.name) : createSlug(data?.name)
+          }`}
           state={{
             serviceId: data?.id,
           }}
           className="flex items-center justify-center gap-1 bg-white py-3 px-8 rounded-xl border border-mainColor text-mainColor mt-4"
         >
-          <span>{data?.btnText}</span>
           <GoArrowUpLeft />
+          <span>{t("more")}</span>
         </Link>
       </div>
     </div>

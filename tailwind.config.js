@@ -3,6 +3,10 @@ export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
+      fontFamily: {
+        arabic: ["Bahij Insan", "sans-serif"],
+        english: ["Gucina", "sans-serif"],
+      },
       colors: {
         purpleColor: "#A56FCC",
         mainColor: "#3D2571",
@@ -17,10 +21,10 @@ export default {
       },
       transformStyle: {
         "3d": "preserve-3d",
-      }, 
+      },
       backfaceVisibility: {
         hidden: "hidden",
-      }
+      },
     },
   },
   plugins: [],

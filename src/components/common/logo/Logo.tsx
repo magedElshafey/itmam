@@ -1,22 +1,20 @@
-import { Link } from "react-router-dom";
-
+import { useNavigate } from "react-router-dom";
 interface logoProps {
-    logo?: string;
-    style?: React.CSSProperties;
+  logo?: string;
 }
-
-const Logo: React.FC<logoProps> = ({ logo, style }) => {
-    return (
-        <Link to="/">
-            <img
-                style={style}
-                alt="logo"
-                src={logo}
-                className={`${style ? "" : "h-[30px] md:h-[50px]"
-                    }`}
-            />
-        </Link>
-    );
+const Logo: React.FC<logoProps> = ({ logo }) => {
+  const navigate = useNavigate();
+  const handleClick = () => {
+    navigate("/");
+  };
+  return (
+    <img
+      alt="logo"
+      src={logo}
+      className="h-[50px] cursor-pointer"
+      onClick={handleClick}
+    />
+  );
 };
 
 export default Logo;

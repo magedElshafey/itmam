@@ -6,7 +6,7 @@ interface TitleProps {
 const Title: React.FC<TitleProps> = ({ title }) => {
   const { t } = useTranslation();
   return (
-      <h3 data-aos="fade-down" className="text-center font-black mb-6">
+      <h3  className="text-center font-black mb-6 text-xl md:text-2xl lg:text-3xl xl:text-5xl">
           {t(title)}
     </h3>
   )

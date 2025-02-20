@@ -1,4 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
+import HtmlRenderer from "../html/HtmlRender";
+import { useTranslation } from "react-i18next";
 interface HeroProps {
   title: string;
   descreption?: string;
@@ -18,10 +20,16 @@ const Hero: React.FC<HeroProps> = ({
   image,
 }) => {
   const { pathname } = useLocation();
+  const { t } = useTranslation();
   return (
     <div className="overflow-x-hidden">
       <div className="relative w-screen h-[500px] lg:h-[600px] overflow-hidden">
-        <img src={image} alt="hero" className="w-full h-full object-cover" />
+        <img
+          src={image}
+          alt="hero"
+          className="w-full h-full object-cover"
+          loading="lazy"
+        />
         <div className="absolute top-0 left-0 w-full h-full bg-black bg-opacity-40">
           <div className="container mx-auto px-8 md:px-16 h-full">
             <div
@@ -31,26 +39,18 @@ const Hero: React.FC<HeroProps> = ({
             >
               <div>
                 <h1
-                  data-aos="fade-up"
-                  className={`text-white  ${descreption ? "mb-2" : ""}`}
+                  className={`text-white text-3xl md:text-4xl lg:text-5xl xl:text-8xl  ${
+                    descreption ? "mb-2" : ""
+                  }`}
                 >
                   {title}
                 </h1>
-                {descreption && (
-                  <h2
-                    className={`text-babyBlueColor ${
-                      metaDescreption ? "mb-3" : ""
-                    }`}
-                  >
-                    {descreption}
-                  </h2>
-                )}
+                {descreption && <HtmlRenderer html={descreption} />}
                 {metaDescreption && (
                   <p
-                    className={`text-white w-full md:w-1/2 ${
+                    className={`text-white text-base md:text-md lg:text-lg xl:text-xl w-full md:w-[80%] lg:w-[60%] ${
                       btns && btns?.length ? "mb-3" : ""
                     }`}
-                    data-aos="fade-down"
                   >
                     {metaDescreption}
                   </p>
@@ -61,9 +61,9 @@ const Hero: React.FC<HeroProps> = ({
                       <Link
                         key={index}
                         to={item?.path}
-                        className="bg-white text-darkMainColor py-2 px-2  md:px-5 flex items-center justify-center rounded-xl duration-500  hover:bg-babyBlueColor hover:text-white"
+                        className="bg-white text-darkMainColor p-4 flex items-center flex-wrap justify-center rounded-xl duration-500 min-w-[180px]  hover:bg-babyBlueColor hover:text-white"
                       >
-                        {item?.name}
+                        {t(item?.name)}
                       </Link>
                     ))}
                   </div>

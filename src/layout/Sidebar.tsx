@@ -1,22 +1,34 @@
 import { IoCloseSharp } from "react-icons/io5";
 import { navLinks } from "../data/data";
 import { NavLink } from "react-router-dom";
-import { socials } from "../data/data";
 import { useTranslation } from "react-i18next";
 import useNavbarLogic from "./navbar/logic/useNavbarLogic";
 import { IoIosArrowDown } from "react-icons/io";
 import createSlug from "../utils/createSlug";
 import { Nav } from "../types/Nav";
 import CallToAction from "./callToAction/CallToAction";
+import Social from "../components/common/social/Social";
 interface SidebarProps {
   showSidebar: boolean;
   setShowSidebar: React.Dispatch<React.SetStateAction<boolean>>;
   sidebarRef: React.RefObject<HTMLDivElement>;
+  facebook?: string;
+  instagram?: string;
+  youtube?: string;
+  tiktok?: string;
+  whatsapp?: string;
+  x?: string;
 }
 const Sidebar: React.FC<SidebarProps> = ({
   showSidebar,
   setShowSidebar,
   sidebarRef,
+  facebook,
+  instagram,
+  youtube,
+  tiktok,
+  whatsapp,
+  x,
 }) => {
   const { t } = useTranslation();
   const {
@@ -85,21 +97,14 @@ const Sidebar: React.FC<SidebarProps> = ({
       </div>
       <div className="mt-5">
         <h5 className="text-white mb-2">{t("follow us")} :</h5>
-        <ul className="flex items-center gap-2 flex-wrap text-white ">
-          {socials?.map((item, index) => (
-            <li key={index} className="flex items-center gap-6 flex-wrap">
-              <a
-                onClick={() => setShowSidebar(false)}
-                href={item?.url}
-                target="_blank"
-                rel="noreferrer"
-                className=" duration-300 hover:text-orangeColor hover:scale-110"
-              >
-                {item?.icon && <item.icon size={20} />}
-              </a>
-            </li>
-          ))}
-        </ul>
+        <Social
+          facebook={facebook}
+          whatsapp={whatsapp}
+          tiktok={tiktok}
+          instagram={instagram}
+          youtube={youtube}
+          x={x}
+        />
       </div>
     </div>
   );
