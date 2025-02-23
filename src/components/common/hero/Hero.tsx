@@ -39,7 +39,7 @@ const Hero: React.FC<HeroProps> = ({
             >
               <div>
                 <h1
-                  className={`text-white text-3xl md:text-4xl lg:text-5xl xl:text-8xl  ${
+                  className={`text-white text-xl md:text-2xl lg:text-3xl xl:text-4xl  ${
                     descreption ? "mb-2" : ""
                   }`}
                 >

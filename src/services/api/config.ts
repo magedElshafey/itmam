@@ -7,4 +7,5 @@ export const contactUs = "contacts"
 export const serviceWithChild = "getServicesWithChild"
 export const services = "services"; 
 export const newsLetters = "store_news_letters"; 
-export const staticPages = "static_pages"
+export const staticPages = "static_pages"; 
+export const getServiceById = "getServiceById"
