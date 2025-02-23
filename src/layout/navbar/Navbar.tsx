@@ -96,7 +96,7 @@ const Navbar: React.FC<NavbarProps> = ({
                       <>
                         <IoIosArrowDown size={15} />
                         <ul
-                          className={`absolute top-full right-0 bg-white py-3 px-6 shadow-md transition-opacity duration-300 min-w-full rounded-lg text-start ${
+                          className={`absolute top-full right-0 bg-white py-3 px-6 shadow-md transition-opacity duration-100 min-w-full rounded-lg text-start ${
                             activeDropDown === index
                               ? "opacity-100 visible"
                               : "opacity-0 invisible"
