@@ -8,6 +8,9 @@ import createSlug from "../utils/createSlug";
 import { Nav } from "../types/Nav";
 import CallToAction from "./callToAction/CallToAction";
 import Social from "../components/common/social/Social";
+import { ServiceWithChild } from "../types/ServiceWithChild";
+import { Link } from "react-router-dom";
+import coins from "../assets/coins.png"
 interface SidebarProps {
   showSidebar: boolean;
   setShowSidebar: React.Dispatch<React.SetStateAction<boolean>>;
@@ -18,6 +21,7 @@ interface SidebarProps {
   tiktok?: string;
   whatsapp?: string;
   x?: string;
+  services: ServiceWithChild[];
 }
 const Sidebar: React.FC<SidebarProps> = ({
   showSidebar,
@@ -29,6 +33,7 @@ const Sidebar: React.FC<SidebarProps> = ({
   tiktok,
   whatsapp,
   x,
+  services,
 }) => {
   const { t } = useTranslation();
   const {
@@ -38,7 +43,7 @@ const Sidebar: React.FC<SidebarProps> = ({
   return (
     <div
       ref={sidebarRef}
-      className={`w-[94%] h-screen py-3 px-6 bg-custom-gradient duration-300 fixed top-0 z-[1000] ${
+      className={`w-[94%] min-h-screen overflow-y-scroll py-3 px-6 bg-custom-gradient duration-300 fixed top-0 z-[1000] lg:hidden ${
         showSidebar ? "left-0" : "left-[-400%]"
       }`}
     >
@@ -88,6 +93,48 @@ const Sidebar: React.FC<SidebarProps> = ({
             </NavLink>
           </li>
         ))}
+          {services?.map((item: ServiceWithChild, index: number) => (
+              <div key={index}>
+                {item?.child_services && item?.child_services?.length ? (
+                  <h5 className="text-white my-2">{t(item?.name)} : </h5>
+                ) : (
+                  <Link
+                    onClick={() => setShowSidebar(false)}
+                    to={`/services/${createSlug(item?.name)}`}
+                    state={{
+                      serviceId: item?.id,
+                    }}
+                    className="text-white my-6 block"
+                  >
+                    {t(item?.name)}
+                  </Link>
+                )}
+
+                {item?.child_services && item?.child_services?.length
+                  ? item?.child_services?.map(
+                      (subItem: ServiceWithChild, subIndex: number) => (
+                      <Link
+                      onClick={() => setShowSidebar(false)}
+                          key={subIndex}
+                          to={`/services/${createSlug(subItem?.name)}`}
+                          state={{
+                            serviceId: subItem?.id,
+                          }}
+                          className="flex items-center gap-2 mb-3 text-white w-fit duration-300 hover:text-babyBlueColor hover:underline group"
+                        >
+                          <img
+                            alt="icon"
+                            src={coins}
+                            className="w-[15px] h-[15px] object-contain duration-300 group-hover:rotate-180"
+                          />
+                          <span>{t(subItem?.name)}</span>
+                        </Link>
+                      )
+                    )
+                  : null}
+              </div>
+            ))}
+      
       </ul>
       <div className="my-5">
         <CallToAction

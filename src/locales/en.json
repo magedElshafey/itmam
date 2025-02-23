@@ -18,5 +18,14 @@
   "name" : "name" , 
   "phone": "phone" , 
   "send" : "send" , 
-  "email" : "email"
+  "email" : "email" , 
+  "Contact us on the following numbers" : "Contact us on the following numbers" , 
+  "For comments and suggestions" : "For comments and suggestions" , 
+  "send message to us" : "send message to us" , 
+  "all fields are required" : "all fields are required" , 
+  "name field is required" : "name field is required" , 
+  "phone field is required" : "phone field is required" , 
+  "email field is required" : "email field is required" , 
+  "message field is required" : "message field is required" , 
+  "Learn about all our services" : "Learn about all our services"
 }

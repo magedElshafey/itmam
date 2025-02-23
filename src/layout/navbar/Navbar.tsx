@@ -4,8 +4,6 @@ import useNavbarLogic from "./logic/useNavbarLogic";
 import { NavLink } from "react-router-dom";
 // assets
 import { IoMdMenu, IoIosArrowDown } from "react-icons/io";
-import logoWhite from "../../assets/whiteLogo.png";
-import darkLogo from "../../assets/darkLogo.png";
 // types
 import { Nav } from "../../types/Nav";
 // data
@@ -16,6 +14,7 @@ import Sidebar from "../Sidebar";
 // utils
 import createSlug from "../../utils/createSlug";
 import CallToAction from "../callToAction/CallToAction";
+import { ServiceWithChild } from "../../types/ServiceWithChild";
 interface NavbarProps {
   facebook?: string;
   instagram?: string;
@@ -23,6 +22,9 @@ interface NavbarProps {
   tiktok?: string;
   whatsapp?: string;
   x?: string;
+  services: ServiceWithChild[];
+  whiteLogo: string; 
+  darkLogo: string; 
 }
 const Navbar: React.FC<NavbarProps> = ({
   facebook,
@@ -31,6 +33,9 @@ const Navbar: React.FC<NavbarProps> = ({
   tiktok,
   whatsapp,
   x,
+  services,
+  whiteLogo, 
+  darkLogo
 }) => {
   const { t } = useTranslation();
   const {
@@ -52,7 +57,7 @@ const Navbar: React.FC<NavbarProps> = ({
       >
         <div className="container mx-auto px-6 lg:px-12">
           <div className="flex items-center justify-between gap-4 lg:gap-6">
-            <Logo logo={scrolling ? darkLogo : logoWhite} />
+            <Logo logo={scrolling ? darkLogo : whiteLogo} />
             <ul className="hidden lg:flex items-center gap-4 lg:gap-6 text-nowrap">
               {navLinks?.map((item: Nav, index: number) => (
                 <li key={index}>
@@ -67,20 +72,40 @@ const Navbar: React.FC<NavbarProps> = ({
                     }  hover:underline  flex items-center gap-3 relative group text-base md:text-md  xl:text-xl`}
                   >
                     <span> {t(item.name)}</span>
-                    {item?.list && item?.list?.length && (
+                  
+                  </NavLink>
+                </li>
+              ))}
+              {services?.map((item: ServiceWithChild, index: number) => (
+                <li key={index}>
+                  <NavLink
+                    onMouseEnter={() => setActiveDropDown(index)}
+                    onMouseLeave={() => setActiveDropDown(null)}
+                    to={`/services/${createSlug(item?.name)}`}
+                    state={{
+                      serviceId: item?.id,
+                    }}
+                    className={`duration-300 ${
+                      scrolling
+                        ? "text-black hover:text-mainColor"
+                        : "text-white hover:text-babyBlueColor"
+                    }  hover:underline  flex items-center gap-3 relative group text-base md:text-md  xl:text-xl`}
+                  >
+                    <span> {item.name}</span>
+                    {item?.child_services && item?.child_services?.length ? (
                       <>
                         <IoIosArrowDown size={15} />
                         <ul
-                          className={`absolute top-full right-0 bg-white p-3 shadow-md transition-opacity duration-300 min-w-full rounded-lg text-start ${
+                          className={`absolute top-full right-0 bg-white py-3 px-6 shadow-md transition-opacity duration-300 min-w-full rounded-lg text-start ${
                             activeDropDown === index
                               ? "opacity-100 visible"
                               : "opacity-0 invisible"
                           }`}
                         >
-                          {item?.list?.map((subItem: Nav, subIndex: number) => (
+                          {item?.child_services?.map((subItem: ServiceWithChild, subIndex: number) => (
                             <NavLink
                               key={subIndex}
-                              className="block mb-3 text-mainColor duration-300 hover:underline"
+                              className="block mb-3 text-mainColor duration-300 hover:underline hover:translate-x-4 w-fit"
                               to={`/services/${createSlug(subItem?.name)}`}
                               state={{
                                 serviceId: subItem?.id,
@@ -92,7 +117,7 @@ const Navbar: React.FC<NavbarProps> = ({
                           ))}
                         </ul>
                       </>
-                    )}
+                    ) : null}
                   </NavLink>
                 </li>
               ))}
@@ -134,6 +159,7 @@ const Navbar: React.FC<NavbarProps> = ({
         tiktok={tiktok}
         whatsapp={whatsapp}
         x={x}
+        services = {services}
       />
     </>
   );

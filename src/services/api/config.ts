@@ -1,5 +1,10 @@
-export const apiUrl: string = "https://dash.qutell.net/api/";
+export const apiUrl: string = "https://dash.qutell.net/api/site/";
 export const baseUrl: string = "https://dash.qutell.net/";
-export const heroHome = "site/hero_sections"; 
-export const settings = "site/settings"
-export const mainServices = "site/getMainServices"
+export const heroHome = "hero_sections"; 
+export const settings = "settings";
+export const mainServices = "getMainServices";
+export const contactUs = "contacts"
+export const serviceWithChild = "getServicesWithChild"
+export const services = "services"; 
+export const newsLetters = "store_news_letters"; 
+export const staticPages = "static_pages"

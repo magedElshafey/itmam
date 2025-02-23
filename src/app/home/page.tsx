@@ -8,7 +8,7 @@ import { useTranslation } from "react-i18next";
 import Vission from "../../components/home/Vission";
 import vission from "../../assets/vission.png";
 import Message from "../../components/home/Message";
-import Contact from "../../components/home/Contact";
+import Contact from "../../components/home/contact/Contact";
 import RegisterInterst from "../../components/home/RegisterInterst";
 import useHeroSection from "./api/useHeroSection";
 import Loader from "../../components/common/loader/Loader";
@@ -17,8 +17,9 @@ import useMainServices from "./api/useMainServices";
 import { MainServices } from "../../types/MainServices";
 interface HomeProps {
   email?: string;
+  darkLogo? : string
 }
-const HomePage: React.FC<HomeProps> = ({ email }) => {
+const HomePage: React.FC<HomeProps> = ({ email , darkLogo }) => {
   const { t } = useTranslation();
   const { isError, isLoading, data } = useHeroSection();
   const {
@@ -26,8 +27,7 @@ const HomePage: React.FC<HomeProps> = ({ email }) => {
     isLoading: isLoadingMainServices,
     data: mainServices,
   } = useMainServices();
-  console.log("Data", data);
-  console.log("mainServices", mainServices);
+
   if (isLoading || isLoadingMainServices) {
     return <Loader />;
   }
@@ -95,7 +95,7 @@ const HomePage: React.FC<HomeProps> = ({ email }) => {
             <Message />
           </div>
           <div className="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-0">
-            <RegisterInterst email={email} />
+            <RegisterInterst email={email} darkLogo = {darkLogo} />
             <div className="w-full md:w-1/2">
               <div className="w-full md:w-3/4 mx-auto">
                 <Contact />

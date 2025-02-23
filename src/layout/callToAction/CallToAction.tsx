@@ -1,4 +1,5 @@
 import { useTranslation } from "react-i18next";
+import { Link } from "react-router-dom";
 interface CallToActionProps {
   scrolling?: boolean;
   showSidebar?: boolean;
@@ -18,15 +19,15 @@ const CallToAction: React.FC<CallToActionProps> = ({
     }
   };
   return (
-    <a
+    <Link
       onClick={handleClick}
       className={` ${
         scrolling ? " bg-darkMainColor text-white" : "bg-white"
       } p-4 text-nowrap  rounded-3xl flex items-center justify-center duration-300 hover:bg-babyBlueColor`}
-      href="#contact"
+      to="/call-us"
     >
       {t("ask for consultation")}
-    </a>
+    </Link>
   );
 };
 

@@ -2,16 +2,15 @@ import { useTranslation } from "react-i18next";
 import { footerLinks } from "../data/data";
 import { Link } from "react-router-dom";
 import Logo from "../components/common/logo/Logo";
-import logo from "../assets/whiteLogo.png";
 import { Nav } from "../types/Nav";
 import coins from "../assets/coins.png";
-import bg from "../assets/footer-bg.png";
 import Social from "../components/common/social/Social";
 import locationIcom from "../assets/location.png";
 import emailIcon from "../assets/email.png";
+import { ServiceWithChild } from "../types/ServiceWithChild";
+import createSlug from "../utils/createSlug";
 interface FooterProps {
   email?: string;
-  phone?: string;
   location?: string;
   facebook?: string;
   instagram?: string;
@@ -19,10 +18,14 @@ interface FooterProps {
   tiktok?: string;
   whatsapp?: string;
   x?: string;
+  services: ServiceWithChild[];
+  whiteLogo: string
+  slogan: string, 
+  copyRight: string, 
+  footer_image : string
 }
 const Footer: React.FC<FooterProps> = ({
   email,
-  phone,
   location,
   facebook,
   instagram,
@@ -30,14 +33,18 @@ const Footer: React.FC<FooterProps> = ({
   tiktok,
   whatsapp,
   x,
+  services,
+  whiteLogo , 
+  slogan, 
+  copyRight, 
+  footer_image
 }) => {
   const { t } = useTranslation();
-  const currentYear = new Date().getFullYear();
   return (
     <div
       className="w-screen mt-4"
       style={{
-        backgroundImage: `url(${bg})`,
+        backgroundImage: `url(${footer_image})`,
         backgroundRepeat: "no-repeat",
         backgroundSize: "cover",
         backgroundPosition: "center",
@@ -50,18 +57,53 @@ const Footer: React.FC<FooterProps> = ({
       <div className="container mx-auto px-8  lg:px-16 py-8 flex items-center">
         <div>
           <div className="w-full flex flex-col md:flex-row gap-4 md:gap-6 items-center mb-8">
-            <Logo logo={logo} />
+            <Logo logo={whiteLogo} />
             <div className="flex-1 text-white">
               <p className="w-full lg:w-[90%] text-center leading-relaxed">
-                تأسست إتمام في المملكة العربية السعودية في عام ****، مع التزام
-                قوي بتقديم الخدمات المالية المبتكرة والاستثمارات الذكية
-                لعملائنا. خلال رحلتنا، استطعنا بناء سمعة متميزة كشركة رائدة في
-                مجال الاستثمارات المالية في المملكة، والتي تقوم على الاعتماد على
-                المهنية والشفافية في جميع جوانب أعمالنا
+              {slogan}
               </p>
             </div>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 lg:gap-8 xl:gap-12 mb-8">
+            {services?.map((item: ServiceWithChild, index: number) => (
+              <div key={index}>
+                {item?.child_services && item?.child_services?.length ? (
+                  <h5 className="text-white mb-4">{t(item?.name)}</h5>
+                ) : (
+                  <Link
+                    to={`/services/${createSlug(item?.name)}`}
+                    state={{
+                      serviceId: item?.id,
+                    }}
+                    className="text-white mb-4"
+                  >
+                    {t(item?.name)}
+                  </Link>
+                )}
+
+                {item?.child_services && item?.child_services?.length
+                  ? item?.child_services?.map(
+                      (subItem: ServiceWithChild, subIndex: number) => (
+                        <Link
+                          key={subIndex}
+                          to={`/services/${createSlug(subItem?.name)}`}
+                          state={{
+                            serviceId: subItem?.id,
+                          }}
+                          className="flex items-center gap-2 mb-3 text-white w-fit duration-300 hover:text-babyBlueColor hover:underline group"
+                        >
+                          <img
+                            alt="icon"
+                            src={coins}
+                            className="w-[15px] h-[15px] object-contain duration-300 group-hover:rotate-180"
+                          />
+                          <span>{t(subItem?.name)}</span>
+                        </Link>
+                      )
+                    )
+                  : null}
+              </div>
+            ))}
             {footerLinks?.map((item: Nav, index: number) => (
               <div key={index}>
                 <h5 className="text-white mb-4">{t(item?.name)}</h5>
@@ -107,14 +149,12 @@ const Footer: React.FC<FooterProps> = ({
               {email}
             </a>
           </div>
-          <a
-            href={`tel:${phone}`}
-            target="_blank"
-            rel="noreferrer"
+          <Link
+            to="/call-us"
             className="bg-white text-darkMainColor flex items-center justify-center py-2 px-6 duration-300 hover:bg-babyBlueColor hover:text-white rounded-xl w-fit mb-4"
           >
             {t("call us")}
-          </a>
+          </Link>
           <div className="mb-6">
             <h5 className="mb-3 text-white">{t("follow us")}</h5>
             <Social
@@ -128,10 +168,7 @@ const Footer: React.FC<FooterProps> = ({
           </div>
           <div className="w-full flex justify-center">
             <p className="w-full md:w-[70%] text-center text-white leading-relaxed">
-              مرخصة من قبل هيئة سوق المال، ترخيص رقم (*******), شركة مساهمة
-              مقفلة برأس مال 3 مليون ريال مدفوعة بالكامل ومقرها الرئيسي الرياض,
-              سجل تجاري (1010964590) لممارسة أنشطة إدارة الاستثمارات، والترتيب،
-              وتقديم المشورة. © {currentYear} - كل الحقوق محفوظة الى إتمام
+          {copyRight}
             </p>
           </div>
         </div>
