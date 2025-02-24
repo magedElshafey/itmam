@@ -17,7 +17,7 @@ const MainInput: React.FC<MainInputProps> = ({
   return (
     <div>
       <input
-        className="bg-white border border-1 outline-none rounded-xl p-3 w-full"
+        className="bg-white border border-1 outline-none rounded-3xl py-3 px-5 w-full"
         value={value}
         type={type}
         onChange={onChange}

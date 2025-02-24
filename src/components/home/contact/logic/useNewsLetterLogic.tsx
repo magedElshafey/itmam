@@ -32,7 +32,6 @@ const useNewsLetterLogic = () => {
       formData.append("phone", phone);
       try {
         const response = await mutateAsync(formData);
-        console.log("response from contact", response);
         if (response?.status) {
           toast.success(response?.message);
           setName("");

@@ -17,7 +17,7 @@ export default {
       },
       backgroundImage: {
         "custom-gradient":
-          "linear-gradient(to bottom right, #A56FCC, #3D2571, #000C40 , #994ECC)",
+          "linear-gradient(180deg, #6642AB 0%, #C292E3 100%)",
       },
       transformStyle: {
         "3d": "preserve-3d",

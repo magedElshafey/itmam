@@ -34,5 +34,7 @@
   "phone field is required" : "يرجي إدخال رقم الهاتف" , 
   "email field is required" : "يرجي ادخال البريد الالكتروني" , 
   "message field is required" : "يرجي ادخال الرسالة" , 
-  "Learn about all our services" : "تعرف علي جميع خدماتنا"
+  "Learn about all our services" : "تعرف علي جميع خدماتنا" , 
+  "Contact us today to explore how our company can help you achieve your financial goals and achieve sustainable growth in investments" : "تفضلوا بالتواصل معنا اليوم لاستكشاف كيف يمكن لشركتنا مساعدتكم في تحقيق أهدافكم المالية وتحقيق النمو المستدام في مجال الاستثمارات" , 
+  "View all our services" : "مشاهدة جميع خدماتنا"
 }

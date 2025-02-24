@@ -1,8 +1,10 @@
 import { Link, useLocation } from "react-router-dom";
 import HtmlRenderer from "../html/HtmlRender";
 import { useTranslation } from "react-i18next";
+import { motion } from "framer-motion";
+
 interface HeroProps {
-  title: string;
+  title?: string;
   descreption?: string;
   metaDescreption?: string;
   btns?: {
@@ -22,49 +24,63 @@ const Hero: React.FC<HeroProps> = ({
   const { pathname } = useLocation();
   const { t } = useTranslation();
   return (
-    <div className="overflow-x-hidden">
+    <div className="overflow-hidden">
       <div className="relative w-screen h-[450px] lg:h-[550px] overflow-hidden">
-        <img
-          src={image}
-          alt="hero"
-          className="w-full h-full object-cover"
-          loading="lazy"
-        />
+        <img src={image} alt="hero" className="w-full h-full object-cover" />
         <div className="absolute top-0 left-0 w-full h-full bg-black bg-opacity-40">
-          <div className="container mx-auto px-8 md:px-16 h-full">
+          <div className="container mx-auto px-8 md:px-16 lg:px-24 h-full">
             <div
               className={`w-full h-full flex items-center ${
                 pathname === "/" ? "justify-start" : "justify-center"
               }`}
             >
               <div>
-                <h1
-                  className={`text-white text-xl md:text-2xl lg:text-3xl xl:text-4xl  ${
-                    descreption ? "mb-2" : ""
-                  }`}
-                >
-                  {t(title)}
-                </h1>
+                {title ? (
+                  <motion.h1
+                    initial={{ opacity: 0, y: -80 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 1, ease: "easeOut", bounce: 0.4 }}
+                    className={`text-white text-xl md:text-2xl lg:text-3xl xl:text-5xl ${
+                      descreption ? "mb-2" : ""
+                    }`}
+                  >
+                    {t(title)}
+                  </motion.h1>
+                ) : null}
                 {descreption && <HtmlRenderer html={descreption} />}
                 {metaDescreption && (
-                  <p
-                    className={`text-white text-base md:text-md lg:text-lg xl:text-xl w-full md:w-[80%] lg:w-[60%] ${
-                      btns && btns?.length ? "mb-3" : ""
+                  <motion.p
+                    initial={{ opacity: 0, x: 100 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 1, ease: "easeOut", bounce: 0.4 }}
+                    className={`text-white text-base md:text-md lg:text-lg xl:text-xl w-full my-3 ${
+                      btns && btns?.length ? "mb-7" : ""
                     }`}
                   >
                     {metaDescreption}
-                  </p>
+                  </motion.p>
                 )}
                 {btns && btns?.length && (
-                  <div className="flex items-center gap-3 flex-wrap">
+                  <div className="flex items-center gap-2 flex-wrap">
                     {btns?.map((item, index: number) => (
-                      <Link
+                      <motion.div
                         key={index}
-                        to={item?.path}
-                        className="bg-white text-darkMainColor p-4 flex items-center flex-wrap justify-center rounded-xl duration-500 min-w-[180px]  hover:bg-babyBlueColor hover:text-white"
+                        initial={{ opacity: 0, y: 50 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{
+                          duration: 1,
+                          ease: "easeOut",
+                          delay: index * 0.2,
+                          bounce: 0.4,
+                        }}
                       >
-                        {t(item?.name)}
-                      </Link>
+                        <Link
+                          to={item?.path}
+                          className="bg-white text-darkMainColor py-3 px-4 flex items-center flex-wrap justify-center rounded-3xl duration-500 min-w-[150px]  hover:bg-babyBlueColor hover:text-white"
+                        >
+                          {t(item?.name)}
+                        </Link>
+                      </motion.div>
                     ))}
                   </div>
                 )}

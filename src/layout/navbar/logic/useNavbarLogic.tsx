@@ -1,17 +1,24 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { useLanguage } from "../../../store/LanguageProvider";
+import { useClickOutside } from "../../../hooks/common/ui/useClickOutside";
 const useNavbarLogic = () => {
   // states
   const [showSidebar, setShowSidebar] = useState<boolean>(false);
   const [activeDropDown, setActiveDropDown] = useState<number | null>(null);
   const [scrolling, setScrolling] = useState<boolean>(false);
   const { language, changeLanguage } = useLanguage();
+  const handleCloseSidebar = () => {
+    setShowSidebar(false);
+  };
   // refs
-  const sidebarRef = useRef<HTMLDivElement>(null);
+  const sidebarRef = useClickOutside<HTMLDivElement>({
+    onClickOutside: handleCloseSidebar,
+  });
   // handlers
   const handleShowSidebar = () => {
     setShowSidebar(!showSidebar);
   };
+
   const changeLanguageHandler = (language: string) => {
     changeLanguage(language);
   };
@@ -29,14 +36,14 @@ const useNavbarLogic = () => {
       showSidebar,
       activeDropDown,
       scrolling,
-      language
+      language,
     },
     refs: { sidebarRef },
     handlers: {
       setShowSidebar,
       setActiveDropDown,
       handleShowSidebar,
-      changeLanguageHandler
+      changeLanguageHandler,
     },
   };
 };

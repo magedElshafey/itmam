@@ -35,9 +35,9 @@ const CallusPage: React.FC<CallusPageProps> = ({
   } = useCallusLogic();
   return (
     <>
-      <Head title={tabTitle("اتصل بنا")} />
+      <Head title={tabTitle(t("contact us"))} />
       <Hero title="call us" image={hero} />
-      <div className="container mx-auto px-8 md:px-16 my-6 md:my-8">
+      <div className="container mx-auto px-8 md:px-16 lg:px-24 my-6 md:my-8">
         {phone1 && (
           <p className="font-bold text-md md:text-lg lg:text-xl xl:text-2xl mb-2">
             {t("Contact us on the following numbers")} :
@@ -145,7 +145,7 @@ const CallusPage: React.FC<CallusPageProps> = ({
                 <MainTextArea value={message} onChange={handleMessageChnage} />
               </div>
               <div className="w-full flex justify-center">
-                <SendButton disabled = {isPending} />
+                <SendButton disabled={isPending} />
               </div>
             </form>
           </div>
