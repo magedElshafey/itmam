@@ -4,7 +4,7 @@
 
 @font-face {
     font-family: "Bahij Insan";
-    src: url("/public/assets/fonts/ar/Bahij\ Insan\ Regular\ .ttf") format("truetype");
+    src: url("/assets/fonts/ar/Bahij-Insan-Regular.ttf") format("truetype");
     font-weight: normal;
     font-style: normal;
     font-display: swap;
@@ -12,7 +12,7 @@
 
 @font-face {
     font-family: "Bahij Insan";
-    src: url("/public/assets/fonts/ar/Bahij_Insan-Bold.ttf") format("truetype");
+    src: url("/assets/fonts/ar/Bahij_Insan-Bold.ttf") format("truetype");
     font-weight: bold;
     font-style: normal;
     font-display: swap;
@@ -20,7 +20,7 @@
 
 @font-face {
     font-family: "Gucina";
-    src: url("/public/assets/fonts/en/gucina-regular.otf") format("opentype");
+    src: url("/assets/fonts/en/gucina-regular.otf") format("opentype");
     font-weight: normal;
     font-style: normal;
     font-display: swap;
@@ -28,7 +28,7 @@
 
 @font-face {
     font-family: "Gucina";
-    src: url("/public/assets/fonts/en/gucina-medium.otf") format("opentype");
+    src: url("/assets/fonts/en/gucina-medium.otf") format("opentype");
     font-weight: 500;
     font-style: normal;
     font-display: swap;
@@ -36,7 +36,7 @@
 
 @font-face {
     font-family: "Gucina";
-    src: url("/public/assets/fonts/en/gucina-semibold.otf") format("opentype");
+    src: url("/assets/fonts/en/gucina-semibold.otf") format("opentype");
     font-weight: 600;
     font-style: normal;
     font-display: swap;
@@ -44,7 +44,7 @@
 
 @font-face {
     font-family: "Gucina";
-    src: url("/public/assets/fonts/en/gucina-bold.otf") format("opentype");
+    src: url("/assets/fonts/en/gucina-bold.otf") format("opentype");
     font-weight: bold;
     font-style: normal;
     font-display: swap;
