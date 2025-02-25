@@ -4,6 +4,7 @@ import { Route, Routes } from "react-router-dom";
 import useLocalizeDocumentAttributes from "./hooks/common/ui/useLocalizeDocumentAttributes";
 import useSettings from "./hooks/api/useSettings";
 import useServiceWithChild from "./hooks/api/useServiceWithChild";
+import useNetworkStatus from "./hooks/common/ui/useNetworkStatus";
 // common layout
 import Loader from "./components/common/loader/Loader";
 import Head from "./components/common/meta/Head";
@@ -15,6 +16,7 @@ import whiteLogo from "./assets/whiteLogo.png";
 import darkLogo from "./assets/darkLogo.png";
 import footerBg from "./assets/footer-bg.png";
 // pages
+import OfflineNetworkPage from "./app/offline/page";
 const Home = lazy(() => import("./app/home/page"));
 const About = lazy(() => import("./app/about/page"));
 const Services = lazy(() => import("./app/services/page"));
@@ -28,13 +30,16 @@ const NotFound = lazy(() => import("./app/not-found/page"));
 const App = () => {
   useLocalizeDocumentAttributes();
   const { isLoading, isError, data } = useSettings();
+  console.log("data from settinfs" , data)
   const {
     isLoading: loadingServices,
     isError: errorServices,
     data: services,
   } = useServiceWithChild();
-  if (isLoading || loadingServices) return <Loader />;
+  const { isOnline, isPending } = useNetworkStatus();
+  if (isLoading || loadingServices || isPending) return <Loader />;
   if (isError || errorServices) return <NotFound />;
+  if (!isOnline) return <OfflineNetworkPage />;
   return (
     <Suspense fallback={<Loader />}>
       <Head
@@ -51,14 +56,14 @@ const App = () => {
         whatsapp={data?.whatsapp}
         x={data?.x}
         services={services}
-        whiteLogo={data?.logo || whiteLogo}
-        darkLogo={data?.logo2 || darkLogo}
+        whiteLogo={data?.logo_light || whiteLogo}
+        darkLogo={data?.logo_dark || darkLogo}
       />
       <Routes>
         <Route
           path="/"
           element={
-            <Home email={data?.email} darkLogo={data?.logo2 || darkLogo} />
+            <Home email={data?.email} darkLogo={data?.logo_dark || darkLogo} />
           }
         />
         <Route path="/about" element={<About />} />
@@ -67,7 +72,7 @@ const App = () => {
         <Route
           path="/contact"
           element={
-            <Contact email={data?.email} darkLogo={data?.logo2 || darkLogo} />
+            <Contact email={data?.email} darkLogo={data?.logo_dark || darkLogo} />
           }
         />
         <Route path="/privacy" element={<Privacy />} />
@@ -80,7 +85,7 @@ const App = () => {
               phone1={data?.phone}
               phone2={data?.phone2}
               email={data?.email}
-              logo={data?.logo2 || darkLogo}
+              logo={data?.logo_dark || darkLogo}
             />
           }
         />
@@ -96,9 +101,9 @@ const App = () => {
         whatsapp={data?.whatsapp}
         x={data?.x}
         services={services}
-        whiteLogo={data?.logo || whiteLogo}
-        slogan={data?.footer_description}
-        copyRight={data?.footer_description2}
+        whiteLogo={data?.logo_light || whiteLogo}
+        slogan={data?.slogan}
+        copyRight={data?.copyrights}
         footer_image={data?.footer_image || footerBg}
       />
     </Suspense>

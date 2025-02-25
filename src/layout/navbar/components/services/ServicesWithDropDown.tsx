@@ -47,17 +47,18 @@ const ServicesWithDropDown: React.FC<ServicesLinksProps> = ({
                     >
                       {item?.child_services?.map(
                         (subItem: ServiceWithChild, subIndex: number) => (
-                          <NavLink
-                            key={subIndex}
-                            className="block mb-3 text-mainColor duration-300 hover:underline hover:translate-x-4 w-fit"
-                            to={`/services/${createSlug(subItem?.name)}`}
-                            state={{
-                              serviceId: subItem?.id,
-                            }}
-                            onClick={() => setActiveDropDown(null)}
-                          >
-                            {t(subItem?.name)}
-                          </NavLink>
+                          <li key={subIndex}>
+                            <NavLink
+                              className="block mb-3 text-mainColor duration-300 hover:underline hover:translate-x-4 w-fit"
+                              to={`/services/${createSlug(subItem?.name)}`}
+                              state={{
+                                serviceId: subItem?.id,
+                              }}
+                              onClick={() => setActiveDropDown(null)}
+                            >
+                              {t(subItem?.name)}
+                            </NavLink>
+                          </li>
                         )
                       )}
                     </ul>

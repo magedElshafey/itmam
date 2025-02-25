@@ -65,10 +65,7 @@ const CallusPage: React.FC<CallusPageProps> = ({
           {t("For comments and suggestions")} :
         </p>
         <p className="mb-4">
-          يمكنكم التقدم بأي اقتراح أو شكوى أو اعتراض على أية خدمة تقدمها شركة
-          إتمام للإستثمار أو احد منسوبيها خلال أوقات العمل، يمكن تقديمها بشكل
-          شفهي أو مكتوب أو عن طريق الفرع الرئيسي أو عن طريق الهاتف أو على البريد
-          الإلكتروني من خلال الأرقام والعناوين التالية
+       {t("You may submit any suggestion, complaint, or objection to any service provided by Etmam Investment Company or one of its employees during working hours. It can be submitted orally, in writing, through the main branch, by phone, or by e-mail through the following numbers and addresses.")}
         </p>
         <ul className="mb-6 lg:mb-8">
           {phone1 && (

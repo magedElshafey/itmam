@@ -17,9 +17,11 @@ const PrivacyPage = () => {
     <>
       <Head title={tabTitle(t("privacy and policy"))} />
       <Hero image={pageData?.image || bg} title={pageData?.name || ""} />
-      <div className="container mx-auto px-8 md:px-16 lg:px-24 my-5 md:my-8">
-        <HtmlRenderer html={pageData?.description || ""} />
-      </div>
+      {pageData?.description && (
+        <div className="container mx-auto px-8 md:px-16 lg:px-24 my-5 md:my-8">
+          <HtmlRenderer html={pageData?.description} />
+        </div>
+      )}
     </>
   );
 };

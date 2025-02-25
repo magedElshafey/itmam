@@ -9,7 +9,8 @@ const useSettings = () => {
       const { data } = await Axios.get(settings);
       return data?.data as Settings;
     },
-    staleTime: 1000 * 60 * 60, 
-    gcTime: 1000 * 60 * 60 * 2
+    staleTime: 1000 * 60 * 60,
+    gcTime: 1000 * 60 * 60 * 2,
   });
-};export default useSettings;
+};
+export default useSettings;

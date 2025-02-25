@@ -15,6 +15,7 @@ import useServiceByIdLogic from "./logic/useServiceByIdLogic";
 import DetailsCard from "../../../components/common/cards/DetailsCard";
 import Head from "../../../components/common/meta/Head";
 import { tabTitle } from "../../../utils/tabTitle";
+import HtmlRenderer from "../../../components/common/html/HtmlRender";
 const ServiceDetailsPage = () => {
   const serviceId = useLocation()?.state?.serviceId;
   const {
@@ -33,25 +34,53 @@ const ServiceDetailsPage = () => {
   if (isLoading) {
     return <Loader />;
   }
+  console.log("service details pge", data);
   return (
-    <>
+    <div className="overflow-x-hidden">
       {data?.name ? <Head title={tabTitle(data?.name)} /> : null}
 
       <Hero image={bg} title={data?.name || ""} />
       <div className="container mx-auto px-8 md:px-16 lg:px-24 my-6 lg:my-8">
         <Title title={data?.name || ""} />
-        {data?.child_services && data?.child_services?.length ? (
+        {data?.description && <HtmlRenderer html={data?.description} />}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  gap-4 md:gap-6 lg:gap-8 xl:gap-12 my-4 md:my-6 lg:my-8">
+          {!data?.is_final ? (
+            data?.child_services && data?.child_services?.length ? (
+              data?.child_services?.map(
+                (item: ServiceWithChild, index: number) => (
+                  <MainCard key={index} data={item} index={index} />
+                )
+              )
+            ) : (
+              <div className="w-full flex items-center justify-center text-lg md:text-xl lg:text-2xl xl:text-3xl text-red-600 text-center">
+                <p className="text-center">{t("no data")}</p>
+              </div>
+            )
+          ) : data?.child_services && data?.child_services?.length ? (
+            data?.child_services?.map(
+              (item: ServiceWithChild, index: number) => (
+                <DetailsCard key={index} item={item} index={index} />
+              )
+            )
+          ) : (
+            <div className="w-full flex items-center justify-center text-lg md:text-xl lg:text-2xl xl:text-3xl text-red-600 text-center">
+              <p className="text-center">{t("no data")}</p>
+            </div>
+          )}
+        </div>
+
+        {/* {data?.child_services && data?.child_services?.length ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  gap-4 md:gap-6 lg:gap-8 xl:gap-12 my-4 md:my-6 lg:my-8">
             {data?.child_services?.map(
               (item: ServiceWithChild, index: number) =>
                 item?.new_child_services && item?.new_child_services?.length ? (
-                  <MainCard key={index} data={item} index={index} />
+                 
                 ) : (
                   <DetailsCard key={index} item={item} index={index} />
                 )
             )}
           </div>
-        ) : null}
+        ) : null} */}
         <BgForm>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 lg:gap-8 xl:gap-12 items-center">
             <div>
@@ -102,7 +131,7 @@ const ServiceDetailsPage = () => {
           </div>
         </BgForm>
       </div>
-    </>
+    </div>
   );
 };
 

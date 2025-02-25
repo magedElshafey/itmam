@@ -29,5 +29,15 @@
   "message field is required" : "message field is required" , 
   "Learn about all our services" : "Learn about all our services" , 
   "Contact us today to explore how our company can help you achieve your financial goals and achieve sustainable growth in investments" : "Contact us today to explore how our company can help you achieve your financial goals and achieve sustainable growth in investments" , 
-  "View all our services" : "View all our services"
+  "View all our services" : "View all our services" , 
+  "no internet connection" : "no internet connection" , 
+  "please check your internet connection and try again" : "please check your internet connection and try again" , 
+  "retry again" : "retry again" , 
+  "terms and conditions" : "Policies and terms" , 
+  "privacy and policy" : "Privacy and usage policy" , 
+  "terms and conditionss" : "terms and conditions" , 
+  "call us" : "call us" , 
+  "phone number 1" : "phone" ,
+  "phone number 2" : "phone" , 
+  "You may submit any suggestion, complaint, or objection to any service provided by Etmam Investment Company or one of its employees during working hours. It can be submitted orally, in writing, through the main branch, by phone, or by e-mail through the following numbers and addresses." : "You may submit any suggestion, complaint, or objection to any service provided by Etmam Investment Company or one of its employees during working hours. It can be submitted orally, in writing, through the main branch, by phone, or by e-mail through the following numbers and addresses."
 }

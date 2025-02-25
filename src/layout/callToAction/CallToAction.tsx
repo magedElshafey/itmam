@@ -21,10 +21,10 @@ const CallToAction: React.FC<CallToActionProps> = ({
   return (
     <Link
       onClick={handleClick}
-      className={` ${
+      className={` min-w-[180px] ${
         scrolling ? " bg-darkMainColor text-white" : "bg-white"
       } p-4 text-nowrap  rounded-3xl flex items-center justify-center duration-300 hover:bg-babyBlueColor`}
-      to="/call-us"
+      to="/contact"
     >
       {t("ask for consultation")}
     </Link>

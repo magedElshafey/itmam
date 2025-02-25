@@ -63,7 +63,7 @@ const HomePage: React.FC<HomeProps> = ({ email, darkLogo }) => {
           },
           {
             name: "Investment opportunities",
-            path: "/investment-opportunities",
+            path: "/services",
           },
         ]}
       />

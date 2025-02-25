@@ -37,7 +37,7 @@ const MainCard: React.FC<MainCardProps> = ({ data, index }) => {
         {data?.description ? (
           <HtmlRenderer html={data?.description?.substring(0, 100)} />
         ) : null}
-        {data?.description && data?.description?.length > 100 ? "..." : ""}
+        {data?.description && data?.description?.length > 100 ? "..." : null}
 
         <Link
           to={`/services/${createSlug(data?.name)}`}

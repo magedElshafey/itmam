@@ -1,12 +1,19 @@
 import HtmlRenderer from "../html/HtmlRender";
 import { ServiceWithChild } from "../../../types/ServiceWithChild";
+import { motion } from "framer-motion";
 interface DetailsCardProps {
   item: ServiceWithChild;
   index: number;
 }
 const DetailsCard: React.FC<DetailsCardProps> = ({ item, index }) => {
   return (
-    <div className="flex flex-col items-center justify-center gap-2">
+    <motion.div
+      initial={{ opacity: 0, x: 100 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      viewport={{ once: false, amount: 0.2 }}
+      transition={{ duration: 0.6, ease: "easeOut", delay: index * 0.1 }}
+      className="flex flex-col items-center justify-center gap-2"
+    >
       <div className="flex items-center justify-center w-24 h-24 rounded-[50%] bg-custom-gradient text-babyBlueColor font-bold text-xl md:text-2xl lg:text-3xl xl:text-4xl">
         <p>{++index}</p>
       </div>
@@ -18,7 +25,7 @@ const DetailsCard: React.FC<DetailsCardProps> = ({ item, index }) => {
           <HtmlRenderer html={item?.description} />
         </div>
       )}
-    </div>
+    </motion.div>
   );
 };
 

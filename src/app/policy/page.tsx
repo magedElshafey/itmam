@@ -20,9 +20,11 @@ const PolicyPage = () => {
         image={pageData?.image || bg}
         title={pageData?.name || "سياسة الإفصاح"}
       />
-      <div className="container mx-auto px-8 md:px-16 lg:px-24 my-5 md:my-8">
-        <HtmlRenderer html={pageData?.description || ""} />
-      </div>
+      {pageData?.description && (
+        <div className="container mx-auto px-8 md:px-16 lg:px-24 my-5 md:my-8">
+          <HtmlRenderer html={pageData?.description} />
+        </div>
+      )}
     </>
   );
 };
