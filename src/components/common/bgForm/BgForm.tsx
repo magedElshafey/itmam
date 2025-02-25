@@ -1,4 +1,4 @@
-import bg from "../../../assets/contactImg.png";
+import bg from "../../../assets/contactImg-min.webp";
 interface BgFormProps {
   children: React.ReactNode;
 }

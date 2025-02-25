@@ -1,7 +1,7 @@
 import RegisterInterst from "../../components/home/RegisterInterst";
 import Contact from "../../components/home/contact/Contact";
 import Hero from "../../components/common/hero/Hero";
-import bg from "../../assets/assets.png";
+import bg from "../../assets/assets-min.webp";
 import { useTranslation } from "react-i18next";
 import Head from "../../components/common/meta/Head";
 import { tabTitle } from "../../utils/tabTitle";

@@ -1,4 +1,4 @@
-import logo from "../../../assets/darkLogo.png";
+import logo from "../../../assets/darkLogo-min.webp";
 const Loader = () => {
   return (
     <div className="w-screen h-screen flex justify-center items-center flex-col gap-12 fixed top-0 left-0 z-50 bg-white">

@@ -1,5 +1,5 @@
 import Hero from "../../components/common/hero/Hero";
-import assets from "../../assets/assets.png";
+import assets from "../../assets/assets-min.webp";
 import Title from "../../components/common/title/Title";
 import MainCard from "../../components/common/cards/MainCard";
 import useAllServices from "./api/useAllServices";

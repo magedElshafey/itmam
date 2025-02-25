@@ -1,5 +1,5 @@
 import Hero from "../../components/common/hero/Hero";
-import bg from "../../assets/bg-img.png";
+import bg from "../../assets/bg-img-min.webp";
 import Title from "../../components/common/title/Title";
 import MainCard from "../../components/common/cards/MainCard";
 import { GoArrowUpLeft } from "react-icons/go";
@@ -16,7 +16,7 @@ import useMainServices from "./api/useMainServices";
 import { MainServices } from "../../types/MainServices";
 import useAbout from "./api/useAbout";
 import { About } from "../../types/About";
-import hero from "../../assets/hero.png";
+import hero from "../../assets/hero-min.webp";
 interface HomeProps {
   email?: string;
   darkLogo?: string;
@@ -48,7 +48,6 @@ const HomePage: React.FC<HomeProps> = ({ email, darkLogo }) => {
   }
   const messages = about?.filter((item: About) => item?.type === "message");
   const vission = about?.filter((item: About) => item?.type === "vision");
-
   return (
     <div className="overflow-x-hidden">
       <Hero

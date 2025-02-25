@@ -1,5 +1,5 @@
-import locationIcom from "../../../../assets/location.png";
-import emailIcon from "../../../../assets/email.png";
+import locationIcom from "../../../../assets/location.webp";
+import emailIcon from "../../../../assets/email.webp";
 interface DetailsProps {
   location?: string;
   email?: string;

@@ -32,7 +32,6 @@ const Hero: React.FC<HeroProps> = ({
           className="w-full h-full object-cover"
           width="1920"
           height="550"
-          decoding="async"
           loading="lazy"
         />
         <div className="absolute top-0 left-0 w-full h-full bg-black bg-opacity-40">

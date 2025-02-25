@@ -1,4 +1,4 @@
-import trueIcon from "../../../assets/true.png";
+import trueIcon from "../../../assets/true.webp";
 import { useTranslation } from "react-i18next";
 interface SendButtonProps {
   disabled?: boolean;

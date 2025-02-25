@@ -1,4 +1,4 @@
-import coins from "../../../assets/coins.png";
+import coins from "../../../assets/coins.webp";
 const Coins = () => {
   return (
     <img

@@ -2,7 +2,7 @@ import Head from "../../components/common/meta/Head";
 import { tabTitle } from "../../utils/tabTitle";
 import Hero from "../../components/common/hero/Hero";
 import { useTranslation } from "react-i18next";
-import hero from "../../assets/assets.png";
+import hero from "../../assets/assets-min.webp";
 import BgForm from "../../components/common/bgForm/BgForm";
 import MainInput from "../../components/common/inputs/MainInput";
 import SendButton from "../../components/common/buttons/SendButton";

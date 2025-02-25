@@ -1,5 +1,5 @@
 import Hero from "../../components/common/hero/Hero";
-import bg from "../../assets/assets.png";
+import bg from "../../assets/assets-min.webp";
 import HtmlRenderer from "../../components/common/html/HtmlRender";
 import useStaticPages from "../../hooks/api/useStaticPages";
 import Loader from "../../components/common/loader/Loader";

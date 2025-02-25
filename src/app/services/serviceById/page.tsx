@@ -1,7 +1,7 @@
 import Loader from "../../../components/common/loader/Loader";
 import useServiceById from "./api/useServiceById";
 import Hero from "../../../components/common/hero/Hero";
-import bg from "../../../assets/assets.png";
+import bg from "../../../assets/assets-min.webp";
 import MainCard from "../../../components/common/cards/MainCard";
 import Title from "../../../components/common/title/Title";
 import BgForm from "../../../components/common/bgForm/BgForm";
@@ -67,19 +67,6 @@ const ServiceDetailsPage = () => {
             </div>
           )}
         </div>
-
-        {/* {data?.child_services && data?.child_services?.length ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  gap-4 md:gap-6 lg:gap-8 xl:gap-12 my-4 md:my-6 lg:my-8">
-            {data?.child_services?.map(
-              (item: ServiceWithChild, index: number) =>
-                item?.new_child_services && item?.new_child_services?.length ? (
-                 
-                ) : (
-                  <DetailsCard key={index} item={item} index={index} />
-                )
-            )}
-          </div>
-        ) : null} */}
         <BgForm>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 lg:gap-8 xl:gap-12 items-center">
             <div>

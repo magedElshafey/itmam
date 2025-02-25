@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import img from "../../assets/nointernet.png";
+import img from "../../assets/nointernet-min.webp";
 const OfflineNetworkPage = () => {
   const { t } = useTranslation();
   return (
@@ -12,12 +12,7 @@ const OfflineNetworkPage = () => {
           <p className="text-slate-500">
             {t("please check your internet connection and try again")}
           </p>
-          <img
-            alt="no-internet"
-            src={img}
-           
-            className="max-w-full h-[350px]"
-          />
+          <img alt="no-internet" src={img} className="max-w-full h-[350px]" />
           <button
             onClick={() => window.location.reload()}
             className="flex items-center justify-center min-w-[180px] rounded-3xl py-3 px-4 bg-mainColor text-white"

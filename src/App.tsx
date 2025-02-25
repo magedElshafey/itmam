@@ -12,9 +12,9 @@ import FixedBtn from "./components/common/buttons/fixed/FixedBtn";
 import Navbar from "./layout/navbar/Navbar";
 import Footer from "./layout/footer/Footer";
 // assets
-import whiteLogo from "./assets/whiteLogo.png";
-import darkLogo from "./assets/darkLogo.png";
-import footerBg from "./assets/footer-bg.png";
+import whiteLogo from "./assets/whiteLogo-min.webp";
+import darkLogo from "./assets/darkLogo-min.webp";
+import footerBg from "./assets/footer-bg-min.webp";
 // pages
 import OfflineNetworkPage from "./app/offline/page";
 const Home = lazy(() => import("./app/home/page"));
