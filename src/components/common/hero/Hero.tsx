@@ -78,7 +78,7 @@ const Hero: React.FC<HeroProps> = ({
                         transition={{
                           duration: 0.4,
                           ease: "easeOut",
-                          delay: index * 0.1, 
+                          delay:0.1, 
                         }}
                       >
                         <Link

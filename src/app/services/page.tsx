@@ -6,15 +6,17 @@ import useAllServices from "./api/useAllServices";
 import Loader from "../../components/common/loader/Loader";
 import Head from "../../components/common/meta/Head";
 import { tabTitle } from "../../utils/tabTitle";
+import { useTranslation } from "react-i18next";
 const Services = () => {
+  const {t} = useTranslation()
   const { isLoading, data } = useAllServices();
   if (isLoading) {
     return <Loader />;
   }
   return (
     <>
-      <Head title={tabTitle("جميع خدماتنا")} />
-      <Hero title="جميع خدماتنا" image={assets} />
+      <Head title={tabTitle(t("all services"))} />
+      <Hero title= {t("all services")} image={assets} />
       <div className="container mx-auto px-8 md:px-16 lg:px-24 my-6 md:my-8">
         {data?.length ? (
           <>
