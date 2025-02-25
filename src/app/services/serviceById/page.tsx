@@ -34,7 +34,6 @@ const ServiceDetailsPage = () => {
   if (isLoading) {
     return <Loader />;
   }
-  console.log("service details pge", data);
   return (
     <div className="overflow-x-hidden">
       {data?.name ? <Head title={tabTitle(data?.name)} /> : null}

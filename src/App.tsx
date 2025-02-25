@@ -30,7 +30,6 @@ const NotFound = lazy(() => import("./app/not-found/page"));
 const App = () => {
   useLocalizeDocumentAttributes();
   const { isLoading, isError, data } = useSettings();
-  console.log("data from settinfs" , data)
   const {
     isLoading: loadingServices,
     isError: errorServices,

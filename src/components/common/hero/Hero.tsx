@@ -26,7 +26,15 @@ const Hero: React.FC<HeroProps> = ({
   return (
     <div className="overflow-hidden">
       <div className="relative w-screen h-[450px] lg:h-[550px] overflow-hidden">
-        <img src={image} alt="hero" className="w-full h-full object-cover" />
+        <img
+          src={image}
+          alt="hero"
+          className="w-full h-full object-cover"
+          width="1920"
+          height="550"
+          decoding="async"
+          loading="eager"
+        />
         <div className="absolute top-0 left-0 w-full h-full bg-black bg-opacity-40">
           <div className="container mx-auto px-8 md:px-16 lg:px-24 h-full">
             <div
@@ -37,9 +45,9 @@ const Hero: React.FC<HeroProps> = ({
               <div>
                 {title ? (
                   <motion.h1
-                    initial={{ opacity: 0, y: -80 }}
+                    initial={{ opacity: 0, y: -20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 1, ease: "easeOut", bounce: 0.4 }}
+                    transition={{ duration: 0.5 }}
                     className={`text-white text-xl md:text-2xl lg:text-3xl xl:text-5xl ${
                       descreption ? "mb-2" : ""
                     }`}
