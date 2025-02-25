@@ -44,7 +44,7 @@ const MainCard: React.FC<MainCardProps> = ({ data, index }) => {
           state={{
             serviceId: data?.id,
           }}
-          className="flex items-center justify-center gap-1 bg-white py-3 px-5 rounded-3xl text-mainColor mt-2"
+          className="flex items-center justify-center gap-1 bg-white py-3 px-5 rounded-3xl text-mainColor mt-2 duration-300 hover:bg-babyBlueColor"
         >
           <span>{t("more")}</span>
           <GoArrowUpLeft />
