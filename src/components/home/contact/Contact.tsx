@@ -12,12 +12,11 @@ const Contact = () => {
   return (
     <BgForm>
       <motion.form
-        initial={{ opacity: 0, x: -100 }} 
+        initial={{ opacity: 0, x: -50 }}
         whileInView={{ opacity: 1, x: 0 }}
-        viewport={{ once: false, amount: 0.3 }} 
-        transition={{ duration: 0.7, ease: "easeOut" }}
+        viewport={{ once: true, amount: 0.2 }}
+        transition={{ duration: 0.4, ease: "easeOut" }}
         onSubmit={handleSubmit}
-     
       >
         <div className="my-5">
           <MainInput

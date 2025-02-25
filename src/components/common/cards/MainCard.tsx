@@ -18,10 +18,10 @@ const MainCard: React.FC<MainCardProps> = ({ data, index }) => {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.3 }}
       transition={{
-        duration: 0.6,
+        duration: 0.4, 
         ease: "easeOut",
-        bounce: 0.4,
-        delay: index ? index * 0.2 : 0.2,
+        bounce: 0.2, 
+        delay: index ? index * 0.1 : 0, 
       }}
       className="w-full bg-custom-gradient p-3 rounded-3xl flex items-center text-white text-center duration-300 hover:rounded-none cursor-pointer"
     >

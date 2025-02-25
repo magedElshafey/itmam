@@ -33,7 +33,7 @@ const Hero: React.FC<HeroProps> = ({
           width="1920"
           height="550"
           decoding="async"
-          loading="eager"
+          loading="lazy"
         />
         <div className="absolute top-0 left-0 w-full h-full bg-black bg-opacity-40">
           <div className="container mx-auto px-8 md:px-16 lg:px-24 h-full">
@@ -58,9 +58,9 @@ const Hero: React.FC<HeroProps> = ({
                 {descreption && <HtmlRenderer html={descreption} />}
                 {metaDescreption && (
                   <motion.p
-                    initial={{ opacity: 0, x: 100 }}
+                    initial={{ opacity: 0, x: 50 }}
                     animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 1, ease: "easeOut", bounce: 0.4 }}
+                    transition={{ duration: 0.4, ease: "easeOut" }}
                     className={`text-white text-base md:text-md lg:text-lg xl:text-xl w-full my-3 ${
                       btns && btns?.length ? "mb-7" : ""
                     }`}
@@ -73,13 +73,12 @@ const Hero: React.FC<HeroProps> = ({
                     {btns?.map((item, index: number) => (
                       <motion.div
                         key={index}
-                        initial={{ opacity: 0, y: 50 }}
+                        initial={{ opacity: 0, y: 30 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{
-                          duration: 1,
+                          duration: 0.4,
                           ease: "easeOut",
-                          delay: index * 0.2,
-                          bounce: 0.4,
+                          delay: index * 0.1, 
                         }}
                       >
                         <Link

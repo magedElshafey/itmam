@@ -5,24 +5,47 @@ import { motion } from "framer-motion";
 interface VissionProps {
   data: About;
 }
+
 const Vission: React.FC<VissionProps> = ({ data }) => {
   return (
     <motion.div
-      initial={{ opacity: 0, scale: 1.3, x: 100 }} 
-      whileInView={{ opacity: 1, scale: 1, x: 0 }} 
-      viewport={{ once: true, amount: 0.3 }} 
-      transition={{ duration: 0.8, ease: "easeOut" }}
-      className="h-[200px] lg:h-[320px] rounded-3xl duration-300 cursor-pointer hover:rounded-none"
-      style={{
-        backgroundImage: `url(${data?.image})`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        backgroundRepeat: "no-repeat",
-        width: "100%",
-        position: "relative",
-      }}
+      initial={{ opacity: 0, x: 100 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      viewport={{ once: true, amount: 0.3 }}
+      transition={{ duration: 0.5, ease: "easeOut" }}
+      className="h-[200px] lg:h-[320px] rounded-3xl cursor-pointer relative overflow-hidden"
     >
-      <div className="absolute top-0 left-0 w-full h-full bg-black bg-opacity-30 z-30 rounded-3xl text-white ">
+      <motion.div
+        className="absolute top-0 left-0 w-full h-full"
+        style={{
+          backgroundImage: `url(${data?.image})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+        }}
+        animate={{
+          rotate: [0, 0.5, -0.5, 0],
+          y: [0, -2, 2, 0],
+        }}
+        transition={{
+          duration: 0.4,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+      />
+
+      <motion.div
+        className="absolute top-0 left-0 w-full h-full bg-black bg-opacity-30 z-30 rounded-3xl text-white"
+        animate={{
+          rotate: [0, 0.5, -0.5, 0],
+          y: [0, -2, 2, 0],
+        }}
+        transition={{
+          duration: 0.4,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+      >
         <div className="container mx-auto px-8 md:px-16 lg:px-24 h-full">
           <div className="w-full h-full flex items-center justify-end">
             <div className="flex flex-col items-center">
@@ -33,7 +56,7 @@ const Vission: React.FC<VissionProps> = ({ data }) => {
             </div>
           </div>
         </div>
-      </div>
+      </motion.div>
     </motion.div>
   );
 };
