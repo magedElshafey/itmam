@@ -1,11 +1,11 @@
 import { AxiosError } from "axios";
 import { toast } from "react-toastify";
 
-const handlePromisError = (error) => {
+const handlePromisError = (error: unknown) => {
   if (error instanceof AxiosError && error.response) {
-    toast.error(error.response.data.message);
+    toast.error(error.response.data?.message || "خطأ غير متوقع من السيرفر");
   } else {
-    toast.error("An unexpected error occurred");
+    toast.error("حدث خطأ غير متوقع");
   }
 };
 
