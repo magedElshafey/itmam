@@ -154,7 +154,6 @@ const Footer: React.FC<FooterProps> = ({
         />
       )}
 
-      {/* غطاء شفاف للخلفية بدلاً من backgroundBlendMode */}
       <div className="absolute inset-0 bg-black opacity-55"></div>
 
       <motion.div

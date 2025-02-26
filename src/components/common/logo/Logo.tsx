@@ -14,6 +14,8 @@ const Logo: React.FC<logoProps> = ({ logo }) => {
       className="h-auto w-[150px] cursor-pointer"
       onClick={handleClick}
       loading="eager"
+      width={150}
+      height={46}
     />
   );
 };
