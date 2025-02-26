@@ -11,8 +11,9 @@ const Logo: React.FC<logoProps> = ({ logo }) => {
     <img
       alt="logo"
       src={logo}
-      className="h-[50px] cursor-pointer"
+      className="h-auto w-[150px] cursor-pointer"
       onClick={handleClick}
+      loading="eager"
     />
   );
 };

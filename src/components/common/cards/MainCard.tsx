@@ -14,15 +14,15 @@ const MainCard: React.FC<MainCardProps> = ({ data, index }) => {
   const { t } = useTranslation();
   return (
     <motion.div
-      initial={{ opacity: 0, y: -80 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.3 }}
-      transition={{
-        duration: 0.4, 
-        ease: "easeOut",
-        bounce: 0.2, 
-        delay: index ? index * 0.1 : 0, 
-      }}
+    initial={{ opacity: 0, x: 100 }}
+    whileInView={{ opacity: 1, x: 0 }}
+    viewport={{ once: true, amount: 0.2 }}
+    transition={{
+      duration: 0.4,
+      ease: "easeOut",
+      bounce: 0.2,
+      delay: index ? index * 0.1 : 0,
+    }}
       className="w-full bg-custom-gradient p-3 rounded-3xl flex items-center text-white text-center duration-300 hover:rounded-none cursor-pointer"
     >
       <div className="w-full h-full flex flex-col items-center justify-center">

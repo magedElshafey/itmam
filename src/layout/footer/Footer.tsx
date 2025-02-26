@@ -150,8 +150,7 @@ const Footer: React.FC<FooterProps> = ({
           src={footer_image}
           alt="Footer Background"
           className="absolute inset-0 w-full h-full object-cover"
-          loading="eager"
-          fetchPriority="high"
+          loading="lazy"
         />
       )}
 
@@ -163,7 +162,7 @@ const Footer: React.FC<FooterProps> = ({
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.3 }}
         transition={{
-          duration: 0.8,
+          duration: 0.5,
           ease: "easeOut",
           bounce: 0.2,
         }}
@@ -174,7 +173,9 @@ const Footer: React.FC<FooterProps> = ({
             <Logo logo={whiteLogo} />
             {slogan && (
               <div className="flex-1 text-white">
-                <p className="w-full lg:w-[90%] text-center leading-relaxed">{slogan}</p>
+                <p className="w-full lg:w-[90%] text-center leading-relaxed">
+                  {slogan}
+                </p>
               </div>
             )}
           </div>
@@ -186,7 +187,14 @@ const Footer: React.FC<FooterProps> = ({
           <CallUsBtn />
           <div className="mb-6">
             <h5 className="mb-3 text-white">{t("follow us")}</h5>
-            <Social facebook={facebook} whatsapp={whatsapp} tiktok={tiktok} instagram={instagram} youtube={youtube} x={x} />
+            <Social
+              facebook={facebook}
+              whatsapp={whatsapp}
+              tiktok={tiktok}
+              instagram={instagram}
+              youtube={youtube}
+              x={x}
+            />
           </div>
           {copyRight && <CopyRight copyRight={copyRight} />}
         </div>
