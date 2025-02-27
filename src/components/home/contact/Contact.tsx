@@ -5,8 +5,8 @@ import useNewsLetterLogic from "./logic/useNewsLetterLogic";
 import { motion } from "framer-motion";
 const Contact = () => {
   const {
-    states: { name, phone },
-    handlers: { handleNameChange, handlePhoneChange, handleSubmit },
+    states: { name, phone , email },
+    handlers: { handleNameChange, handlePhoneChange, handleEmailChange ,  handleSubmit },
     isPending,
   } = useNewsLetterLogic();
   return (
@@ -32,6 +32,14 @@ const Contact = () => {
             placeholder="phone"
             value={phone}
             onChange={handlePhoneChange}
+          />
+        </div>
+        <div className="my-5">
+          <MainInput
+            type="email"
+            placeholder="email"
+            value={email}
+            onChange={handleEmailChange}
           />
         </div>
         <div className="w-full flex justify-center">

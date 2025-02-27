@@ -1,6 +1,7 @@
 import HtmlRenderer from "../html/HtmlRender";
 import { ServiceWithChild } from "../../../types/ServiceWithChild";
 import { motion } from "framer-motion";
+import detailsImg from "../../../assets/detailsImg.png"
 interface DetailsCardProps {
   item: ServiceWithChild;
   index: number;
@@ -19,8 +20,14 @@ const DetailsCard: React.FC<DetailsCardProps> = ({ item, index }) => {
       }}
       className="flex flex-col items-center justify-center gap-2"
     >
-      <div className="flex items-center justify-center w-24 h-24 rounded-[50%] bg-custom-gradient text-babyBlueColor font-bold text-xl md:text-2xl lg:text-3xl xl:text-4xl">
+      {/* <div className="flex items-center justify-center w-24 h-24 rounded-[50%] bg-custom-gradient text-babyBlueColor font-bold text-xl md:text-2xl lg:text-3xl xl:text-4xl">
         <p>{++index}</p>
+      </div> */}
+      <div className="flex flex-col items-center">
+        <p className="font-semibold text-3l md:text-4xl lg:text-5xl xl:text-6xl text-[#994ECC]">
+          {++index}
+        </p>
+        <img alt = "icon" src = {detailsImg} className="h-[100px]" loading="lazy" /> 
       </div>
       <p className="font-bold text-xl md:text-2xl lg:text-3xl xl:text-4xl text-center">
         {item?.name}

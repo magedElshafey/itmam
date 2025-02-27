@@ -8,11 +8,15 @@ const useNewsLetterLogic = () => {
   const { t } = useTranslation();
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
+  const [email, setEmail] = useState("");
   const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setName(e.target.value);
   };
   const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPhone(e.target.value);
+  };
+  const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setEmail(e.target.value);
   };
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -28,7 +32,7 @@ const useNewsLetterLogic = () => {
     } else {
       const formData = new FormData();
       formData.append("name", name);
-
+      formData.append("email", email);
       formData.append("phone", phone);
       try {
         const response = await mutateAsync(formData);
@@ -36,6 +40,7 @@ const useNewsLetterLogic = () => {
           toast.success(response?.message);
           setName("");
           setPhone("");
+          setEmail("");
         }
       } catch (error) {
         handlePromisError(error);
@@ -46,11 +51,12 @@ const useNewsLetterLogic = () => {
     states: {
       name,
       phone,
+      email,
     },
     handlers: {
       handleNameChange,
       handlePhoneChange,
-
+      handleEmailChange,
       handleSubmit,
     },
     isPending,

@@ -25,7 +25,11 @@ const Hero: React.FC<HeroProps> = ({
   const { t } = useTranslation();
   return (
     <div className="overflow-hidden">
-      <div className="relative w-screen h-[450px] lg:h-[550px] overflow-hidden">
+      <div
+        className={`relative w-screen h-[450px] ${
+          pathname === "/" ? "lg:h-screen" : "lg:h-[550px]"
+        } overflow-hidden`}
+      >
         <img
           src={image}
           alt="hero"
@@ -77,7 +81,7 @@ const Hero: React.FC<HeroProps> = ({
                         transition={{
                           duration: 0.4,
                           ease: "easeOut",
-                          delay:0.1, 
+                          delay: 0.1,
                         }}
                       >
                         <Link
