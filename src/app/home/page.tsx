@@ -48,6 +48,8 @@ const HomePage: React.FC<HomeProps> = ({ email, darkLogo }) => {
   }
   const messages = about?.filter((item: About) => item?.type === "message");
   const vission = about?.filter((item: About) => item?.type === "vision");
+  const values = about?.filter((item: About) => item?.type === "values");
+  console.log("hero image" , data)
   return (
     <div className="overflow-x-hidden">
       <Hero
@@ -101,7 +103,13 @@ const HomePage: React.FC<HomeProps> = ({ email, darkLogo }) => {
         {messages?.length && (
           <div className="my-6 md:my-8">
             <Title title="message" />
-            <Message data={messages} />
+            <Message data={messages} hasDesc = {false} />
+          </div>
+        )}
+         {values?.length && (
+          <div className="my-6 md:my-8">
+            <Title title="our values" />
+            <Message data={values} hasDesc = {true} />
           </div>
         )}
         <div className="flex flex-col md:flex-row items-center gap-4 md:gap-6 lg:gap-8">

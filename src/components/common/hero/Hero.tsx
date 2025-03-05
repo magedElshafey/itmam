@@ -59,20 +59,9 @@ const Hero: React.FC<HeroProps> = ({
                   </motion.h1>
                 ) : null}
                 {descreption && <HtmlRenderer html={descreption} />}
-                {metaDescreption && (
-                  <motion.p
-                    initial={{ opacity: 0, x: 50 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.4, ease: "easeOut" }}
-                    className={`text-white text-base md:text-md lg:text-lg xl:text-xl w-full my-3 ${
-                      btns && btns?.length ? "mb-7" : ""
-                    }`}
-                  >
-                    {metaDescreption}
-                  </motion.p>
-                )}
+                {metaDescreption && <HtmlRenderer html={metaDescreption} />}
                 {btns && btns?.length && (
-                  <div className="flex items-center gap-2 flex-wrap">
+                  <div className="mt-7 flex items-center gap-2 flex-wrap">
                     {btns?.map((item, index: number) => (
                       <motion.div
                         key={index}

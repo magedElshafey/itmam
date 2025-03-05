@@ -6,11 +6,11 @@ export const navLinks: Nav[] = [
     link: "/",
     id: 1,
   },
-  // {
-  //   name: "About",
-  //   link: "/about",
-  //   id: 2,
-  // },
+  {
+    name: "About",
+    link: "/about",
+    id: 2,
+  },
   
 ];
 export const footerLinks: Nav[] = [

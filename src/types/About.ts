@@ -6,6 +6,7 @@ export interface About {
   meta_title: string;
   meta_description: string;
   image: string;
+  org_structure?: string; 
   added_by: {
     id: number;
     name: string;
