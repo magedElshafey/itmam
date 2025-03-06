@@ -8,11 +8,14 @@ import HtmlRenderer from "../../components/common/html/HtmlRender";
 import Head from "../../components/common/meta/Head";
 import { tabTitle } from "../../utils/tabTitle";
 import { useTranslation } from "react-i18next";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation } from "swiper/modules";
-import "swiper/css";
-import "swiper/css/navigation";
+import { useRef, useState } from "react";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import Slider from "react-slick";
 import useFetchEmployee from "./api/useFetchEmployee";
+import Title from "../../components/common/title/Title";
+import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
+
 interface Employee {
   id: number;
   name: string;
@@ -25,18 +28,54 @@ interface Employee {
     image: string;
   }[];
 }
-const AboutPage = () => {
-  const { t } = useTranslation();
-  const { isLoading, data: data } = useAbout();
-  const { isLoading: loadingEmployee, data: employees } = useFetchEmployee();
 
+const AboutPage = () => {
+  const { t, i18n } = useTranslation();
+  const { isLoading, data: data } = useAbout();
+  const sliderRef = useRef<Slider | null>(null);
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const { isLoading: loadingEmployee, data: employees } = useFetchEmployee();
+  const settings = {
+    dots: false,
+    autoplay: false,
+    arrows: false,
+    infinite: false,
+    slidesToShow: 3,
+    verical: false,
+    slidesToScroll: 1,
+    rtl: i18n.language === "ar",
+    initialSlide: i18n.language === "ar" ? employees?.length - 1 : 0,
+    afterChange: (index: number) => setCurrentSlide(index),
+    responsive: [
+      {
+        breakpoint: 1224,
+        settings: {
+          slidesToShow: 3,
+        },
+      },
+      {
+        breakpoint: 992,
+        settings: {
+          slidesToShow: 2,
+        },
+      },
+
+      {
+        breakpoint: 540,
+        settings: {
+          slidesToShow: 1,
+        },
+      },
+    ],
+  };
+  const nextSlide = () => sliderRef.current?.slickNext();
+  const prevSlide = () => sliderRef.current?.slickPrev();
   if (isLoading || loadingEmployee) {
     return <Loader />;
   }
   const values = data?.filter((item: About) => item?.type === "values");
   const aboutData = data?.find((item: About) => item?.type === "about");
-  console.log("about data from about page", aboutData);
-  console.log("about data from employees page", employees);
+
   return (
     <>
       <Head
@@ -77,48 +116,71 @@ const AboutPage = () => {
           </div>
         </div>
         <div className="container mx-auto px-8 md:px-16 lg:px-24 my-4 md:my-6 lg:my-8 xl:my-12">
-          <div className="w-full md:w-[80%] mx-auto">
+          <div className="relative">
+            <button
+              onClick={prevSlide}
+              disabled={currentSlide === 0}
+              className={`absolute left-0 top-1/2 transform -translate-y-1/2  bg-darkMainColor text-white w-8 h-8 rounded-[50%] flex items-center justify-center  ${
+                currentSlide === 0 ? "opacity-50 cursor-not-allowed" : ""
+              }`}
+            >
+              <IoIosArrowBack size={20} />
+            </button>
+
+            <button
+              onClick={nextSlide}
+              disabled={
+                currentSlide ===
+                (employees?.length || 0) - settings.slidesToShow
+              }
+              className={`absolute right-0 top-1/2 transform -translate-y-1/2 bg-darkMainColor text-white w-8 h-8 rounded-[50%] flex items-center justify-center ${
+                currentSlide ===
+                (employees?.length || 0) - settings.slidesToShow
+                  ? "opacity-50 cursor-not-allowed"
+                  : ""
+              }`}
+            >
+              <IoIosArrowForward size={20} />
+            </button>
+
+            <Title title="الهيكل الوظيفي" />
+            <Slider {...settings}>
+              {employees?.map((item: Employee) => (
+                <div
+                  dir={i18n.language === "ar" ? "rtl" : "ltr"}
+                  key={item?.id}
+                  className="px-3 "
+                >
+                  <div className="">
+                    <img
+                      loading="lazy"
+                      alt={item?.name}
+                      src={item?.image}
+                      className="w-64 mx-auto h-64"
+                    />
+                  </div>
+                  <div className="mt-3 flex flex-col items-center justify-center gap-2 text-mainColor text-center">
+                    <p className="text-lg md:text-xl lg:text-2xl xl:text-3xl font-bold">
+                      {item?.name}
+                    </p>
+                    <p className="text-base md:textmd lg:text-lg xl:text-xl">
+                      {item?.position}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </Slider>
+          </div>
+
+          <div className="w-full mt-4 md:mt-6 lg:mt-8 md:w-[80%] mx-auto">
             <img
-              className="w-full max-h-[380px]"
+              className="w-full max-h-[480px]"
               alt={aboutData?.meta_title || ""}
               src={aboutData?.org_structure}
               loading="lazy"
             />
           </div>
         </div>
-        <Swiper
-          modules={[Navigation]}
-          navigation
-          spaceBetween={20}
-          slidesPerView={1}
-          breakpoints={{
-            640: { slidesPerView: 1 },
-            768: { slidesPerView: 2 },
-            1024: { slidesPerView: 3 },
-          }}
-          className="w-full max-w-4xl"
-        >
-          {employees.map((item: Employee, index: number) => (
-            <SwiperSlide key={index} className="p-2">
-              <div className="">
-                <img
-                  loading="lazy"
-                  alt={item?.name}
-                  src={item?.image}
-                  className="w-full h-64"
-                />
-              </div>
-              <div className="mt-3 flex flex-col items-center justify-center gap-2 text-mainColor text-center">
-                <p className="text-lg md:text-xl lg:text-2xl xl:text-3xl font-bold">
-                  {item?.name}
-                </p>
-                <p className="text-base md:textmd lg:text-lg xl:text-xl">
-                  {item?.position}
-                </p>
-              </div>
-            </SwiperSlide>
-          ))}
-        </Swiper>
       </div>
     </>
   );
