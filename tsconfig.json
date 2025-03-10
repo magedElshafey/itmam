@@ -3,9 +3,10 @@
     "noImplicitAny": false,
     "strict": false,
     "skipLibCheck": true,
-    "noEmit": false , 
-     "module": "ESNext",
-    "moduleResolution": "Node"
+    "noEmit": false,
+    "module": "ESNext",
+    "moduleResolution": "Node",
+    "allowJs": true
   },
   "files": [],
   "references": [
