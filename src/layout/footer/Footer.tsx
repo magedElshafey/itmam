@@ -108,6 +108,7 @@ import FooterLinks from "./components/footerLinks/FooterLinks";
 import Details from "./components/details/Details";
 import CallUsBtn from "./components/callus/CallUsBtn";
 import CopyRight from "./components/copyright/CopyRight";
+import HtmlRenderer from "../../components/common/html/HtmlRender";
 
 interface FooterProps {
   email?: string;
@@ -171,10 +172,11 @@ const Footer: React.FC<FooterProps> = ({
           <div className="w-full flex flex-col md:flex-row gap-4 md:gap-6 items-center mb-8">
             <Logo logo={whiteLogo} />
             {slogan && (
-              <div className="flex-1 text-white">
-                <p className="w-full lg:w-[90%] text-center leading-relaxed">
+              <div className="flex-1 ">
+                <HtmlRenderer html= {slogan} /> 
+                {/* <p className="w-full lg:w-[90%] text-center leading-relaxed">
                   {slogan}
-                </p>
+                </p> */}
               </div>
             )}
           </div>
