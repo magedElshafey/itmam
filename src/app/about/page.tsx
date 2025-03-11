@@ -75,7 +75,7 @@ const AboutPage = () => {
   }
   const values = data?.filter((item: About) => item?.type === "values");
   const aboutData = data?.find((item: About) => item?.type === "about");
-
+  console.log("org_structure", aboutData?.org_structure);
   return (
     <>
       <Head
@@ -83,7 +83,7 @@ const AboutPage = () => {
         description={aboutData?.meta_description || ""}
       />
       <div className="overflow-x-hidden">
-        <Hero image={bg} title="من نحن" />
+        <Hero image={bg} title={t("about us")} />
         {aboutData?.description && (
           <div className="container mx-auto px-8 md:px-16 lg:px-24 my-4 md:my-6 lg:my-8 text-center">
             <HtmlRenderer html={aboutData?.description} />
@@ -93,11 +93,14 @@ const AboutPage = () => {
           <div className="w-full md:w-1/2 bg-[#A56FCC] py-4 flex items-center bg-opacity-20">
             <div className="container mx-auto px-4 md:px-6 lg:px-8">
               <p className="font-bold text-xl md:text-2xl lg:text-3xl xl:text-4xl mb-3">
-                قيمنا الأساسية
+                {t("our main values")}
               </p>
               <ul>
                 {values?.map((item, index) => (
-                  <li key={index} className="flex items-center gap-3 mb-2">
+                  <li
+                    key={index}
+                    className="flex items-center gap-3 mb-2 flex-wrap"
+                  >
                     <p className="font-bold text-md md:text-lg lg:text-xl xl:text-2xl">
                       {item?.name} :
                     </p>
@@ -142,8 +145,9 @@ const AboutPage = () => {
             >
               <IoIosArrowForward size={20} />
             </button>
-
-            <Title title="الهيكل الوظيفي" />
+            <div className="my-4 md:my-6 lg:my-8 xl:my-12">
+              <Title title={t("Functional structure")} />
+            </div>
             <Slider {...settings}>
               {employees?.map((item: Employee) => (
                 <div
@@ -171,7 +175,9 @@ const AboutPage = () => {
               ))}
             </Slider>
           </div>
-
+          <div className="my-4 md:my-6 lg:my-8 xl:my-12">
+            <Title title={t("Organizational structure")} />
+          </div>
           <div className="w-full mt-4 md:mt-6 lg:mt-8 md:w-[80%] mx-auto">
             <img
               className="w-full max-h-[480px]"
