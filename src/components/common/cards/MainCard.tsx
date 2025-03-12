@@ -11,25 +11,27 @@ interface MainCardProps {
   index?: number;
 }
 const MainCard: React.FC<MainCardProps> = ({ data, index }) => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   return (
     <motion.div
-    initial={{ opacity: 0, x: 100 }}
-    whileInView={{ opacity: 1, x: 0 }}
-    viewport={{ once: true, amount: 0.2 }}
-    transition={{
-      duration: 0.4,
-      ease: "easeOut",
-      bounce: 0.2,
-      delay: index ? index * 0.1 : 0,
-    }}
+      initial={{ opacity: 0, x: 100 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      viewport={{ once: true, amount: 0.2 }}
+      transition={{
+        duration: 0.4,
+        ease: "easeOut",
+        bounce: 0.2,
+        delay: index ? index * 0.1 : 0,
+      }}
       className="w-full bg-custom-gradient p-3 rounded-3xl flex items-center text-white text-center duration-300 hover:rounded-none cursor-pointer"
     >
       <div className="w-full h-full flex flex-col items-center justify-center">
         <p
-          className={`text-md md:text-lg lg:text-xl xl:text-2xl text-center ${
-            data?.description ? "mb-1" : ""
-          } font-bold`}
+          className={` ${
+            i18n.language === "ar"
+              ? "text-md md:text-lg lg:text-xl xl:text-2xl"
+              : "text-base md:text-md lg:text-lg"
+          } text-center ${data?.description ? "mb-1" : ""} font-bold`}
         >
           {data?.name}
         </p>

@@ -22,7 +22,7 @@ const Hero: React.FC<HeroProps> = ({
   image,
 }) => {
   const { pathname } = useLocation();
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   return (
     <div className="overflow-hidden">
       <div
@@ -51,9 +51,11 @@ const Hero: React.FC<HeroProps> = ({
                     initial={{ opacity: 0, y: -20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5 }}
-                    className={`text-white text-xl md:text-2xl lg:text-3xl xl:text-5xl ${
-                      descreption ? "mb-2" : ""
-                    }`}
+                    className={`text-white ${
+                      i18n.language === "ar"
+                        ? "text-xl md:text-2xl lg:text-3xl xl:text-5xl"
+                        : "text-base md:text-md lg:text-lg xl:text-xl"
+                    } ${descreption ? "mb-2" : ""}`}
                   >
                     {t(title)}
                   </motion.h1>

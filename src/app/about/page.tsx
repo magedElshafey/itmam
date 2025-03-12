@@ -101,7 +101,13 @@ const AboutPage = () => {
                     key={index}
                     className="flex items-center gap-3 mb-2 flex-wrap"
                   >
-                    <p className="font-bold text-md md:text-lg lg:text-xl xl:text-2xl">
+                    <p
+                      className={`font-bold ${
+                        i18n.language === "ar"
+                          ? "text-md md:text-lg lg:text-xl xl:text-2xl"
+                          : "text-base  lg:text-lg"
+                      }`}
+                    >
                       {item?.name} :
                     </p>
                     <HtmlRenderer html={item?.description} />

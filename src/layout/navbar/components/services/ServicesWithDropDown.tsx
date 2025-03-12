@@ -15,7 +15,7 @@ const ServicesWithDropDown: React.FC<ServicesLinksProps> = ({
   scrolling,
   activeDropDown,
 }) => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   return (
     <>
       {services && services?.length
@@ -32,7 +32,9 @@ const ServicesWithDropDown: React.FC<ServicesLinksProps> = ({
                   scrolling
                     ? "text-black hover:text-mainColor"
                     : "text-white hover:text-babyBlueColor"
-                }  hover:underline  flex items-center gap-3 relative group text-base md:text-md  xl:text-xl`}
+                }  hover:underline  flex items-center gap-3 relative group ${
+                  i18n.language === "ar" ? "text-base md:text-md  xl:text-xl" : "text-base"
+                } `}
               >
                 <span> {item.name}</span>
                 {item?.child_services && item?.child_services?.length ? (

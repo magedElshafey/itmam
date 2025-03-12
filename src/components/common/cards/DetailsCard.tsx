@@ -2,11 +2,13 @@ import HtmlRenderer from "../html/HtmlRender";
 import { ServiceWithChild } from "../../../types/ServiceWithChild";
 import { motion } from "framer-motion";
 import detailsImg from "../../../assets/detailsImg.png";
+import { useTranslation } from "react-i18next";
 interface DetailsCardProps {
   item: ServiceWithChild;
   index: number;
 }
 const DetailsCard: React.FC<DetailsCardProps> = ({ item, index }) => {
+  const { i18n } = useTranslation();
   return (
     <motion.div
       initial={{ opacity: 0, x: 100 }}
@@ -26,7 +28,13 @@ const DetailsCard: React.FC<DetailsCardProps> = ({ item, index }) => {
         </p>
         <img alt="icon" src={detailsImg} className="h-[100px]" loading="lazy" />
       </div>
-      <p className="font-bold text-xl md:text-2xl lg:text-3xl xl:text-4xl text-center">
+      <p
+        className={`font-bold text-center ${
+          i18n.language === "ar"
+            ? "text-xl md:text-2xl lg:text-3xl xl:text-4xl"
+            : "text-base md:text-md lg:text-lg xl:text-xl"
+        }`}
+      >
         {item?.name}
       </p>
       {item?.description && (
