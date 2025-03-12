@@ -11,7 +11,7 @@ const ServicesLinks: React.FC<ServiceLinkProps> = ({
   services,
   setShowSidebar,
 }) => {
-  const { t } = useTranslation();
+  const { t , i18n } = useTranslation();
   const handleClick = () => {
     if (setShowSidebar) {
       setShowSidebar(false);
@@ -25,7 +25,7 @@ const ServicesLinks: React.FC<ServiceLinkProps> = ({
         ? services?.map((item: ServiceWithChild, index: number) => (
             <div key={index}>
               {item?.child_services && item?.child_services?.length ? (
-                <h5 className="text-white my-2">{t(item?.name)} : </h5>
+                <h5 className= {`text-white my-2 ${i18n.language === "ar" ? "text-md md:text-lg lg:text-xl xl:text-2xl" : ""}`}>{t(item?.name)} : </h5>
               ) : (
                 <Link
                   onClick={handleClick}
@@ -52,7 +52,7 @@ const ServicesLinks: React.FC<ServiceLinkProps> = ({
                         className="flex items-center gap-2 mb-3 text-white w-fit duration-300 hover:text-babyBlueColor hover:underline group"
                       >
                         <Coins />
-                        <span>{t(subItem?.name)}</span>
+                        <span className= {i18n.language === "ar" ? "text-base md:text-md lg:text-lg" : ""}>{t(subItem?.name)}</span>
                       </Link>
                     )
                   )

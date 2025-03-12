@@ -2,11 +2,13 @@ import { About } from "../../types/About";
 import HtmlRenderer from "../common/html/HtmlRender";
 import { motion, useTransform, useMotionValue } from "framer-motion";
 import { useRef } from "react";
+import { useTranslation } from "react-i18next";
 interface VissionProps {
   data: About;
 }
 
 const Vission: React.FC<VissionProps> = ({ data }) => {
+  const {i18n} = useTranslation()
   const containerRef = useRef<HTMLDivElement>(null);
   const x = useMotionValue(0);
   const y = useMotionValue(0);
@@ -70,7 +72,7 @@ const Vission: React.FC<VissionProps> = ({ data }) => {
         transition={{ duration: 0.4, ease: "easeOut" }}
       >
         <div className="flex flex-col items-center justify-end px-8">
-          <h2 className="text-3xl lg:text-5xl font-bold mb-2">{data?.name}</h2>
+          <h1 className= {` font-bold mb-2 ${i18n.language === "ar" ? "text-3xl lg:text-5xl xl:text-6xl" : ""}`}>{data?.name}</h1>
           {data?.description && <HtmlRenderer html={data?.description} />}
         </div>
       </motion.div>

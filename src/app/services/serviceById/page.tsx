@@ -29,7 +29,7 @@ const ServiceDetailsPage = () => {
     },
     isPending,
   } = useServiceByIdLogic(serviceId);
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const { isLoading, data } = useServiceById();
   if (isLoading) {
     return <Loader />;
@@ -41,7 +41,11 @@ const ServiceDetailsPage = () => {
       <Hero image={bg} title={data?.name || ""} />
       <div className="container mx-auto px-8 md:px-16 lg:px-24 my-6 lg:my-8">
         <Title title={data?.name || ""} />
-        {data?.description && <HtmlRenderer html={data?.description} />}
+        {data?.description && (
+          <div className="w-full flex justify-center text-center mx-auto">
+            <HtmlRenderer html={data?.description} />
+          </div>
+        )}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  gap-4 md:gap-6 lg:gap-8 xl:gap-12 my-4 md:my-6 lg:my-8">
           {!data?.is_final ? (
             data?.child_services && data?.child_services?.length ? (
@@ -70,13 +74,31 @@ const ServiceDetailsPage = () => {
         <BgForm>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 lg:gap-8 xl:gap-12 items-center">
             <div>
-              <p>{t("contact us")}</p>
+              <p
+                className={
+                  i18n.language === "ar"
+                    ? "text-base lg:text-md xl:text-lg"
+                    : ""
+                }
+              >
+                {t("contact us")}
+              </p>
               {data?.name && (
-                <p className="font-bold text-md md:text-lg lg:text-xl xl:text-2xl my-2">
+                <p
+                  className={`font-bold text-md md:text-lg lg:text-xl  my-2 ${
+                    i18n.language === "ar" ? "xl:text-4xl" : "xl:text-2xl"
+                  }`}
+                >
                   {data?.name}
                 </p>
               )}
-              <p>
+              <p
+                className={
+                  i18n.language === "ar"
+                    ? "text-base lg:text-md xl:text-lg"
+                    : ""
+                }
+              >
                 {t(
                   "Contact us today to explore how our company can help you achieve your financial goals and achieve sustainable growth in investments"
                 )}

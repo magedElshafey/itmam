@@ -22,7 +22,7 @@ interface HomeProps {
   darkLogo?: string;
 }
 const HomePage: React.FC<HomeProps> = ({ email, darkLogo }) => {
-  const { t } = useTranslation();
+  const { t , i18n } = useTranslation();
   const { isError, isLoading, data } = useHeroSection();
   const {
     isError: aboutError,
@@ -91,7 +91,7 @@ const HomePage: React.FC<HomeProps> = ({ email, darkLogo }) => {
             <div className="w-full flex justify-center mb-8">
               <Link
                 to="/services"
-                className="flex items-center justify-center gap-1 bg-white py-3 px-4 rounded-3xl border border-mainColor text-mainColor duration-300 hover:bg-mainColor hover:text-white"
+                className = {`flex items-center justify-center gap-1 bg-white py-3 px-4 rounded-3xl border border-mainColor text-mainColor duration-300 hover:bg-mainColor hover:text-white ${i18n.language === "ar" ? "text-md lg:text-xl" : ""}`}
               >
                 <span>{t("View all our services")}</span>
                 <GoArrowUpLeft />

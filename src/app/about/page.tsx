@@ -92,7 +92,11 @@ const AboutPage = () => {
         <div className="flex flex-col md:flex-row">
           <div className="w-full md:w-1/2 bg-[#A56FCC] py-4 flex items-center bg-opacity-20">
             <div className="container mx-auto px-4 md:px-6 lg:px-8">
-              <p className="font-bold text-xl md:text-2xl lg:text-3xl xl:text-4xl mb-3">
+              <p
+                className={`font-bold text-xl md:text-2xl lg:text-3xl  mb-3 lg:mb-5 ${
+                  i18n.language === "ar" ? "xl:text-5xl" : "xl:text-4xl"
+                }`}
+              >
                 {t("our main values")}
               </p>
               <ul>
@@ -104,8 +108,8 @@ const AboutPage = () => {
                     <p
                       className={`font-bold ${
                         i18n.language === "ar"
-                          ? "text-md md:text-lg lg:text-xl xl:text-2xl"
-                          : "text-base  lg:text-lg"
+                          ? "text-md md:text-lg lg:text-xl xl:text-3xl"
+                          : "text-base lg:text-lg"
                       }`}
                     >
                       {item?.name} :
@@ -169,11 +173,15 @@ const AboutPage = () => {
                       className="w-64 mx-auto h-64"
                     />
                   </div>
-                  <div className="mt-3 flex flex-col items-center justify-center gap-2 text-mainColor text-center">
-                    <p className="text-lg md:text-xl lg:text-2xl xl:text-3xl font-bold">
+                  <div className="mt-3 flex flex-col items-center justify-center text-mainColor text-center">
+                    <p
+                      className={`text-lg md:text-xl lg:text-2xl  font-bold ${
+                        i18n.language === "ar" ? "xl:text-4xl" : "xl:text-3xl"
+                      }`}
+                    >
                       {item?.name}
                     </p>
-                    <p className="text-base md:textmd lg:text-lg xl:text-xl">
+                    <p className= {`text-base md:textmd lg:text-lg  ${i18n.language === "ar" ? "xl:text-2xl" : "xl:text-xl"}`}>
                       {item?.position}
                     </p>
                   </div>

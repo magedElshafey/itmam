@@ -29,9 +29,9 @@ const MainCard: React.FC<MainCardProps> = ({ data, index }) => {
         <p
           className={` ${
             i18n.language === "ar"
-              ? "text-md md:text-lg lg:text-xl xl:text-2xl"
+              ? "text-lg md:text-xl lg:text-2xl xl:text-3xl"
               : "text-base md:text-md lg:text-lg"
-          } text-center ${data?.description ? "mb-1" : ""} font-bold`}
+          } text-center ${data?.description ? "mb-1" : ""} font-extrabold`}
         >
           {data?.name}
         </p>
