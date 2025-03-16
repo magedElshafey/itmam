@@ -27,7 +27,7 @@ const Hero: React.FC<HeroProps> = ({
     <div className="overflow-hidden">
       <div
         className={`relative w-screen h-[450px] ${
-          pathname === "/" ? "lg:h-screen" : "lg:h-[550px]"
+          pathname === "/" ? "min-h-screen lg:h-screen" : "lg:h-[550px]"
         } overflow-hidden`}
       >
         <img
