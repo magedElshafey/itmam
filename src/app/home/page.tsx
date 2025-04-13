@@ -22,7 +22,7 @@ interface HomeProps {
   darkLogo?: string;
 }
 const HomePage: React.FC<HomeProps> = ({ email, darkLogo }) => {
-  const { t , i18n } = useTranslation();
+  const { t, i18n } = useTranslation();
   const { isError, isLoading, data } = useHeroSection();
   const {
     isError: aboutError,
@@ -49,7 +49,7 @@ const HomePage: React.FC<HomeProps> = ({ email, darkLogo }) => {
   const messages = about?.filter((item: About) => item?.type === "message");
   const vission = about?.filter((item: About) => item?.type === "vision");
   const values = about?.filter((item: About) => item?.type === "values");
-  console.log("hero image" , data)
+  console.log("hero services", mainServices);
   return (
     <div className="overflow-x-hidden">
       <Hero
@@ -91,7 +91,9 @@ const HomePage: React.FC<HomeProps> = ({ email, darkLogo }) => {
             <div className="w-full flex justify-center mb-8">
               <Link
                 to="/services"
-                className = {`flex items-center justify-center gap-1 bg-white py-3 px-4 rounded-3xl border border-mainColor text-mainColor duration-300 hover:bg-mainColor hover:text-white ${i18n.language === "ar" ? "text-md lg:text-xl" : ""}`}
+                className={`flex items-center justify-center gap-1 bg-white py-3 px-4 rounded-3xl border border-mainColor text-mainColor duration-300 hover:bg-mainColor hover:text-white ${
+                  i18n.language === "ar" ? "text-md lg:text-xl" : ""
+                }`}
               >
                 <span>{t("View all our services")}</span>
                 <GoArrowUpLeft />
@@ -103,13 +105,13 @@ const HomePage: React.FC<HomeProps> = ({ email, darkLogo }) => {
         {messages?.length && (
           <div className="my-6 md:my-8">
             <Title title="message" />
-            <Message data={messages} hasDesc = {false} />
+            <Message data={messages} hasDesc={false} />
           </div>
         )}
-         {values?.length && (
+        {values?.length && (
           <div className="my-6 md:my-8">
             <Title title="our values" />
-            <Message data={values} hasDesc = {true} />
+            <Message data={values} hasDesc={true} />
           </div>
         )}
         <div className="flex flex-col md:flex-row items-center gap-4 md:gap-6 lg:gap-8">
@@ -126,4 +128,3 @@ const HomePage: React.FC<HomeProps> = ({ email, darkLogo }) => {
 };
 
 export default HomePage;
-

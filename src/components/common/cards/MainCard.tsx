@@ -37,15 +37,13 @@ const MainCard: React.FC<MainCardProps> = ({ data, index }) => {
         </p>
 
         {data?.description ? (
-          <div>
-            <HtmlRenderer
-              html={
-                data?.description?.length > 200
-                  ? data?.description?.substring(0, 200) + "..."
-                  : data?.description
-              }
-            />
-          </div>
+          <HtmlRenderer
+            html={
+              data?.description?.length > 200
+                ? data?.description?.substring(0, 250) + "..."
+                : data?.description
+            }
+          />
         ) : null}
 
         <Link
