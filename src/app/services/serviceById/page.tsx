@@ -47,29 +47,21 @@ const ServiceDetailsPage = () => {
           </div>
         )}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  gap-4 md:gap-6 lg:gap-8 xl:gap-12 my-4 md:my-6 lg:my-8">
-          {!data?.is_final ? (
-            data?.child_services && data?.child_services?.length ? (
-              data?.child_services?.map(
+          {!data?.is_final
+            ? data?.child_services && data?.child_services?.length
+              ? data?.child_services?.map(
+                  (item: ServiceWithChild, index: number) => (
+                    <MainCard key={index} data={item} index={index} />
+                  )
+                )
+              : null
+            : data?.child_services && data?.child_services?.length
+            ? data?.child_services?.map(
                 (item: ServiceWithChild, index: number) => (
-                  <MainCard key={index} data={item} index={index} />
+                  <DetailsCard key={index} item={item} index={index} />
                 )
               )
-            ) : (
-              <div className="w-full flex items-center justify-center text-lg md:text-xl lg:text-2xl xl:text-3xl text-red-600 text-center">
-                <p className="text-center">{t("no data")}</p>
-              </div>
-            )
-          ) : data?.child_services && data?.child_services?.length ? (
-            data?.child_services?.map(
-              (item: ServiceWithChild, index: number) => (
-                <DetailsCard key={index} item={item} index={index} />
-              )
-            )
-          ) : (
-            <div className="w-full flex items-center justify-center text-lg md:text-xl lg:text-2xl xl:text-3xl text-red-600 text-center">
-              <p className="text-center">{t("no data")}</p>
-            </div>
-          )}
+            : null}
         </div>
         <BgForm>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 lg:gap-8 xl:gap-12 items-center">
