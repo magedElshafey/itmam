@@ -39,7 +39,7 @@ const MainCard: React.FC<MainCardProps> = ({ data, index }) => {
         {data?.description ? (
           <HtmlRenderer
             html={
-              data?.description?.length > 200
+              data?.description?.length > 250
                 ? data?.description?.substring(0, 250) + "..."
                 : data?.description
             }
