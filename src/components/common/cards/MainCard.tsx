@@ -37,9 +37,16 @@ const MainCard: React.FC<MainCardProps> = ({ data, index }) => {
         </p>
 
         {data?.description ? (
-          <HtmlRenderer html={data?.description?.substring(0, 100)} />
+          <div>
+            <HtmlRenderer
+              html={
+                data?.description?.length > 200
+                  ? data?.description?.substring(0, 200) + "..."
+                  : data?.description
+              }
+            />
+          </div>
         ) : null}
-        {data?.description && data?.description?.length > 100 ? "..." : null}
 
         <Link
           to={`/services/${createSlug(data?.name)}`}
@@ -55,5 +62,4 @@ const MainCard: React.FC<MainCardProps> = ({ data, index }) => {
     </motion.div>
   );
 };
-
 export default MainCard;

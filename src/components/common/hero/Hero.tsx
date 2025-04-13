@@ -54,7 +54,7 @@ const Hero: React.FC<HeroProps> = ({
                     className={`text-white ${
                       i18n.language === "ar"
                         ? "text-xl md:text-2xl lg:text-3xl xl:text-5xl"
-                        : "text-base md:text-md lg:text-lg xl:text-xl"
+                        : "text-md md:text-lg lg:text-xl xl:text-2xl 2xl:text-5xl"
                     } ${descreption ? "mb-2" : ""}`}
                   >
                     {t(title)}
