@@ -6,7 +6,7 @@ interface DetailsProps {
   email?: string;
 }
 const Details: React.FC<DetailsProps> = ({ location, email }) => {
-  const {i18n} = useTranslation()
+  const { i18n } = useTranslation();
   return (
     <>
       {location ? (
@@ -16,7 +16,16 @@ const Details: React.FC<DetailsProps> = ({ location, email }) => {
             src={locationIcom}
             className="w-[15px] h-[15px] object-contain"
           />
-          <p className= {`text-white lowercase ${i18n.language === "ar" ? "text-base md:text-md lg:text-lg" : ""}`}>{location}</p>
+          <a
+            target="_blank"
+            rel="noreferrer noopener"
+            href={location}
+            className={`text-white lowercase duration-300 hover:underline ${
+              i18n.language === "ar" ? "text-base md:text-md lg:text-lg" : ""
+            }`}
+          >
+            {location}
+          </a>
         </div>
       ) : null}
       {email ? (
@@ -30,7 +39,9 @@ const Details: React.FC<DetailsProps> = ({ location, email }) => {
             href={`mailto:${email}`}
             target="_blank"
             rel="noreferrer"
-            className= {`lowercase text-white duration-300 hover:underline ${i18n.language === "ar" ? "text-base md:text-md lg:text-lg" : ""}`}
+            className={`lowercase text-white duration-300 hover:underline ${
+              i18n.language === "ar" ? "text-base md:text-md lg:text-lg" : ""
+            }`}
           >
             {email}
           </a>
