@@ -117,6 +117,7 @@ const App = () => {
         slogan={data?.slogan}
         copyRight={data?.copyrights}
         footer_image={data?.footer_image || footerBg}
+        embed_map={data?.embed_map}
       />
     </Suspense>
   );
