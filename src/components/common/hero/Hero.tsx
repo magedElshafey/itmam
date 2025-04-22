@@ -12,6 +12,8 @@ interface HeroProps {
     path: string;
   }[];
   image: string;
+  isList?: boolean;
+  listDesc?: string;
 }
 
 const Hero: React.FC<HeroProps> = ({
@@ -20,6 +22,8 @@ const Hero: React.FC<HeroProps> = ({
   metaDescreption,
   btns,
   image,
+  isList = false,
+  listDesc = "",
 }) => {
   const { pathname } = useLocation();
   const { t, i18n } = useTranslation();
@@ -55,10 +59,23 @@ const Hero: React.FC<HeroProps> = ({
                       i18n.language === "ar"
                         ? "text-xl md:text-2xl lg:text-3xl xl:text-5xl"
                         : "text-md md:text-lg lg:text-xl xl:text-2xl 2xl:text-5xl"
-                    } ${descreption ? "mb-2" : ""}`}
+                    } ${descreption ? "mb-2" : ""} ${
+                      isList ? "text-center" : ""
+                    }`}
                   >
                     {t(title)}
                   </motion.h1>
+                ) : null}
+                {isList && listDesc ? (
+                  <p
+                    className={`text-white text-center ${
+                      i18n.language === "ar"
+                        ? "text-lg md:text-xl lg:text-2xl xl:text-3xl"
+                        : "text-base md:text-md lg:text-lg xl:text-xl 2xl:text-3xl"
+                    }`}
+                  >
+                    {listDesc}
+                  </p>
                 ) : null}
                 {descreption && <HtmlRenderer html={descreption} />}
                 {metaDescreption && <HtmlRenderer html={metaDescreption} />}

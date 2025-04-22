@@ -11,3 +11,4 @@ export const staticPages: string = "static_pages";
 export const getServiceById: string = "getServiceById";
 export const about: string = "abouts";
 export const employees: string = "job_hierarchy";
+export const lists: string = "financial_menus";

@@ -11,7 +11,11 @@ export const navLinks: Nav[] = [
     link: "/about",
     id: 2,
   },
-  
+  {
+    name: "Financial statements",
+    link: "/lists",
+    id: 3,
+  },
 ];
 export const footerLinks: Nav[] = [
   {
@@ -37,4 +41,3 @@ export const footerLinks: Nav[] = [
     ],
   },
 ];
-

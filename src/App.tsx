@@ -26,6 +26,7 @@ const Privacy = lazy(() => import("./app/privacy/page"));
 const Terms = lazy(() => import("./app/terms/page"));
 const Policy = lazy(() => import("./app/policy/page"));
 const Callus = lazy(() => import("./app/callus/page"));
+const Lists = lazy(() => import("./app/lists/Lists"));
 const NotFound = lazy(() => import("./app/not-found/page"));
 const App = () => {
   useLocalizeDocumentAttributes();
@@ -66,12 +67,24 @@ const App = () => {
           }
         />
         <Route path="/about" element={<About />} />
+        <Route
+          path="/lists"
+          element={
+            <Lists
+              email={data?.email || ""}
+              darkLogo={data?.logo_dark || darkLogo}
+            />
+          }
+        />
         <Route path="/services" element={<Services />} />
         <Route path="/services/:slug" element={<ServiceDetails />} />
         <Route
           path="/contact"
           element={
-            <Contact email={data?.email} darkLogo={data?.logo_dark || darkLogo} />
+            <Contact
+              email={data?.email}
+              darkLogo={data?.logo_dark || darkLogo}
+            />
           }
         />
         <Route path="/privacy" element={<Privacy />} />

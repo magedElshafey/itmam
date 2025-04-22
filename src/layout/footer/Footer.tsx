@@ -24,6 +24,7 @@ interface FooterProps {
   slogan?: string;
   copyRight?: string;
   footer_image?: string;
+  embed_map?: string;
 }
 
 const Footer: React.FC<FooterProps> = ({
@@ -40,6 +41,7 @@ const Footer: React.FC<FooterProps> = ({
   slogan,
   copyRight,
   footer_image,
+  embed_map,
 }) => {
   const { t, i18n } = useTranslation();
 
@@ -80,8 +82,29 @@ const Footer: React.FC<FooterProps> = ({
             <ServicesLinks services={services} />
             <FooterLinks />
           </div>
-          <Details email={email} location={location} />
-          <CallUsBtn />
+          <div
+            className={
+              embed_map
+                ? "flex items-center justify-between flex-col md:flex-row gap-4"
+                : ""
+            }
+          >
+            <div>
+              <Details email={email} location={location} />
+              <CallUsBtn />
+            </div>
+            {embed_map ? (
+              <iframe
+                src={embed_map}
+                width="40%"
+                height="250"
+                allowFullScreen={true}
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              />
+            ) : null}
+          </div>
+
           <div className="mb-6">
             <h5
               className={`mb-3 text-white ${
