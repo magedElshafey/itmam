@@ -93,15 +93,18 @@ const Footer: React.FC<FooterProps> = ({
               <Details email={email} location={location} />
               <CallUsBtn />
             </div>
+
             {embed_map ? (
-              <iframe
-                src={embed_map}
-                width="40%"
-                height="250"
-                allowFullScreen={true}
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-              />
+              <div className="w-full md:w-[40%]">
+                <iframe
+                  src={embed_map}
+                  width="100%"
+                  height="250"
+                  allowFullScreen={true}
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                />
+              </div>
             ) : null}
           </div>
 
