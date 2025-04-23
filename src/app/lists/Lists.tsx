@@ -7,6 +7,10 @@ import useLists from "./api/useLists";
 import { motion } from "framer-motion";
 import Contact from "../../components/home/contact/Contact";
 import RegisterInterst from "../../components/home/RegisterInterst";
+
+import { useState } from "react";
+import { saveAs } from "file-saver";
+import useDownloadPdf from "./api/useDownloadPdf";
 interface ListsProps {
   email: string;
   darkLogo: string;
@@ -14,20 +18,16 @@ interface ListsProps {
 const Lists: React.FC<ListsProps> = ({ email, darkLogo }) => {
   const { t } = useTranslation();
   const { data } = useLists();
-
-  const handleDownload = async (
-    e: React.MouseEvent,
-    fileUrl: string,
-    fileName: string
-  ) => {
-    e.preventDefault();
-    const a = document.createElement("a");
-    a.href = fileUrl;
-    a.download = fileName;
-
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
+  const [selectedId, setSelectedId] = useState<string | number | null>(null);
+  const { isLoading, refetch } = useDownloadPdf(selectedId);
+  const handleDownload = async (id: number | string) => {
+    setSelectedId(id);
+    const result = await refetch();
+    if (result.data) {
+      // حفظ الملف باستخدام file-saver
+      const blob = new Blob([result.data], { type: "application/pdf" });
+      saveAs(blob, `report-${id}.pdf`);
+    }
   };
   return (
     <div>
@@ -68,11 +68,12 @@ const Lists: React.FC<ListsProps> = ({ email, darkLogo }) => {
                     {item?.name} - {item?.year}
                   </p>
                   <button
-                    className="bg-white w-[70%] mx-auto p-2 rounded-lg flex items-center justify-center text-black"
+                    disabled={isLoading}
+                    className={`bg-white w-[70%] mx-auto p-2 rounded-lg flex items-center justify-center text-black ${
+                      isLoading ? "bg-opacity-10 cursor-not-allowed" : ""
+                    }`}
                     key={index}
-                    onClick={(e) =>
-                      handleDownload(e, item.file, `version-${index + 1}.pdf`)
-                    }
+                    onClick={() => handleDownload(item?.id)}
                   >
                     {t("Download the report")}
                   </button>
@@ -93,5 +94,4 @@ const Lists: React.FC<ListsProps> = ({ email, darkLogo }) => {
     </div>
   );
 };
-
 export default Lists;
