@@ -15,6 +15,7 @@ import Slider from "react-slick";
 import useFetchEmployee from "./api/useFetchEmployee";
 import Title from "../../components/common/title/Title";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
+import { Link } from "react-router-dom";
 
 interface Employee {
   id: number;
@@ -174,14 +175,19 @@ const AboutPage = () => {
                     />
                   </div>
                   <div className="mt-3 flex flex-col items-center justify-center text-mainColor text-center">
-                    <p
-                      className={`text-lg md:text-xl lg:text-2xl  font-bold ${
+                    <Link
+                      to={`/about/${item?.id}`}
+                      className={`text-lg md:text-xl lg:text-2xl underline  font-bold ${
                         i18n.language === "ar" ? "xl:text-4xl" : "xl:text-3xl"
                       }`}
                     >
                       {item?.name}
-                    </p>
-                    <p className= {`text-base md:textmd lg:text-lg  ${i18n.language === "ar" ? "xl:text-2xl" : "xl:text-xl"}`}>
+                    </Link>
+                    <p
+                      className={`text-base md:textmd lg:text-lg  ${
+                        i18n.language === "ar" ? "xl:text-2xl" : "xl:text-xl"
+                      }`}
+                    >
                       {item?.position}
                     </p>
                   </div>

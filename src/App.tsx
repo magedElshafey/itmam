@@ -19,6 +19,7 @@ import footerBg from "./assets/footer-bg-min.webp";
 import OfflineNetworkPage from "./app/offline/page";
 const Home = lazy(() => import("./app/home/page"));
 const About = lazy(() => import("./app/about/page"));
+const AboutDetails = lazy(() => import("./app/aboutDetails/AboutDetails"));
 const Services = lazy(() => import("./app/services/page"));
 const ServiceDetails = lazy(() => import("./app/services/serviceById/page"));
 const Contact = lazy(() => import("./app/contact/page"));
@@ -67,6 +68,7 @@ const App = () => {
           }
         />
         <Route path="/about" element={<About />} />
+        <Route path="/about/:id" element={<AboutDetails />} />
         <Route
           path="/lists"
           element={
