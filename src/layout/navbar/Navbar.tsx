@@ -46,15 +46,15 @@ const Navbar: React.FC<NavbarProps> = ({
   return (
     <>
       <div
-        className={`fixed top-0 left-0 w-screen py-4 flex items-center z-40 transition-all duration-300 ${
+        className={`fixed top-0 left-0 w-full py-4 flex items-center z-40 transition-all duration-300 ${
           scrolling ? "bg-white shadow-md" : "bg-transparent"
         }`}
       >
-        <div className="container mx-auto px-8 md:px-16 lg:px-24">
-          <div className="flex items-center justify-between gap-4 lg:gap-6">
+        <div className="container mx-auto px-4 sm:px-6  lg:px-8">
+          <div className="flex items-center justify-between gap-4">
             <Logo logo={scrolling ? darkLogo : whiteLogo} />
-            <ul className="hidden lg:flex items-center gap-4 lg:gap-6 text-nowrap">
-              <MainLinks scrolling={scrolling}  />
+            <ul className="hidden lg:flex items-center gap-4 lg:gap-5 ">
+              <MainLinks scrolling={scrolling} />
               <ServicesLinks
                 services={services}
                 activeDropDown={activeDropDown}
