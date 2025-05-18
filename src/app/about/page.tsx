@@ -8,14 +8,12 @@ import HtmlRenderer from "../../components/common/html/HtmlRender";
 import Head from "../../components/common/meta/Head";
 import { tabTitle } from "../../utils/tabTitle";
 import { useTranslation } from "react-i18next";
-import { useRef, useState } from "react";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import useFetchEmployee from "./api/useFetchEmployee";
 import Title from "../../components/common/title/Title";
-import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 interface Employee {
   id: number;
@@ -33,20 +31,21 @@ interface Employee {
 const AboutPage = () => {
   const { t, i18n } = useTranslation();
   const { isLoading, data: data } = useAbout();
-  const sliderRef = useRef<Slider | null>(null);
-  const [currentSlide, setCurrentSlide] = useState(0);
+
   const { isLoading: loadingEmployee, data: employees } = useFetchEmployee();
+  const navigate = useNavigate();
   const settings = {
     dots: false,
-    autoplay: false,
+    autoplay: true,
+    autoplaySpeed: 1000,
     arrows: false,
-    infinite: false,
+    infinite: true,
     slidesToShow: 3,
     verical: false,
     slidesToScroll: 1,
     rtl: i18n.language === "ar",
     initialSlide: i18n.language === "ar" ? employees?.length - 1 : 0,
-    afterChange: (index: number) => setCurrentSlide(index),
+
     responsive: [
       {
         breakpoint: 1224,
@@ -69,8 +68,7 @@ const AboutPage = () => {
       },
     ],
   };
-  const nextSlide = () => sliderRef.current?.slickNext();
-  const prevSlide = () => sliderRef.current?.slickPrev();
+
   if (isLoading || loadingEmployee) {
     return <Loader />;
   }
@@ -130,71 +128,45 @@ const AboutPage = () => {
           </div>
         </div>
         <div className="container mx-auto px-8 md:px-16 lg:px-24 my-4 md:my-6 lg:my-8 xl:my-12">
-          <div className="relative">
-            <button
-              onClick={prevSlide}
-              disabled={currentSlide === 0}
-              className={`absolute left-0 top-1/2 transform -translate-y-1/2  bg-darkMainColor text-white w-8 h-8 rounded-[50%] flex items-center justify-center  ${
-                currentSlide === 0 ? "opacity-50 cursor-not-allowed" : ""
-              }`}
-            >
-              <IoIosArrowBack size={20} />
-            </button>
-
-            <button
-              onClick={nextSlide}
-              disabled={
-                currentSlide ===
-                (employees?.length || 0) - settings.slidesToShow
-              }
-              className={`absolute right-0 top-1/2 transform -translate-y-1/2 bg-darkMainColor text-white w-8 h-8 rounded-[50%] flex items-center justify-center ${
-                currentSlide ===
-                (employees?.length || 0) - settings.slidesToShow
-                  ? "opacity-50 cursor-not-allowed"
-                  : ""
-              }`}
-            >
-              <IoIosArrowForward size={20} />
-            </button>
-            <div className="my-4 md:my-6 lg:my-8 xl:my-12">
-              <Title title={t("Functional structure")} />
-            </div>
-            <Slider {...settings}>
-              {employees?.map((item: Employee) => (
-                <div
-                  dir={i18n.language === "ar" ? "rtl" : "ltr"}
-                  key={item?.id}
-                  className="px-3 "
-                >
-                  <div className="">
-                    <img
-                      loading="lazy"
-                      alt={item?.name}
-                      src={item?.image}
-                      className="w-64 mx-auto h-64"
-                    />
-                  </div>
-                  <div className="mt-3 flex flex-col items-center justify-center text-mainColor text-center">
-                    <Link
-                      to={`/about/${item?.id}`}
-                      className={`text-lg md:text-xl lg:text-2xl underline  font-bold ${
-                        i18n.language === "ar" ? "xl:text-4xl" : "xl:text-3xl"
-                      }`}
-                    >
-                      {item?.name}
-                    </Link>
-                    <p
-                      className={`text-base md:textmd lg:text-lg  ${
-                        i18n.language === "ar" ? "xl:text-2xl" : "xl:text-xl"
-                      }`}
-                    >
-                      {item?.position}
-                    </p>
-                  </div>
-                </div>
-              ))}
-            </Slider>
+          <div className="my-4 md:my-6 lg:my-8 xl:my-12">
+            <Title title={t("Functional structure")} />
           </div>
+          <Slider {...settings}>
+            {employees?.map((item: Employee) => (
+              <div
+                dir={i18n.language === "ar" ? "rtl" : "ltr"}
+                key={item?.id}
+                className="px-3 "
+              >
+                <div className="">
+                  <img
+                    loading="lazy"
+                    alt={item?.name}
+                    src={item?.image}
+                    className="w-64 mx-auto h-64 cursor-pointer"
+                    onClick={() => navigate(`/about/${item?.id}`)}
+                  />
+                </div>
+                <div className="mt-3 flex flex-col items-center justify-center text-mainColor text-center">
+                  <p
+                    className={`text-lg md:text-xl lg:text-2xl   font-bold ${
+                      i18n.language === "ar" ? "xl:text-4xl" : "xl:text-3xl"
+                    }`}
+                  >
+                    {item?.name}
+                  </p>
+                  <p
+                    className={`text-base md:textmd lg:text-lg  ${
+                      i18n.language === "ar" ? "xl:text-2xl" : "xl:text-xl"
+                    }`}
+                  >
+                    {item?.position}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </Slider>
+
           <div className="my-4 md:my-6 lg:my-8 xl:my-12">
             <Title title={t("Organizational structure")} />
           </div>
