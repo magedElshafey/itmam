@@ -10,7 +10,7 @@ const CallToAction: React.FC<CallToActionProps> = ({
   showSidebar,
   setShowSidebar,
 }) => {
-  const { t , i18n } = useTranslation();
+  const { t, i18n } = useTranslation();
   const handleClick = () => {
     if (showSidebar && setShowSidebar) {
       setShowSidebar(false);
@@ -21,9 +21,11 @@ const CallToAction: React.FC<CallToActionProps> = ({
   return (
     <Link
       onClick={handleClick}
-      className={` min-w-[180px] ${
+      className={`min-w-[120px] ${
         scrolling ? " bg-darkMainColor text-white" : "bg-white"
-      } p-4 text-nowrap  rounded-3xl flex items-center justify-center duration-300 hover:bg-babyBlueColor ${i18n.language === "ar" ? "text-base lg:text-md xl:text-lg" : ""}`}
+      } px-4 py-2 text-nowrap  rounded-3xl flex items-center justify-center duration-300 hover:bg-babyBlueColor ${
+        i18n.language === "ar" ? "text-base lg:text-md xl:text-lg" : ""
+      }`}
       to="/contact"
     >
       {t("ask for consultation")}

@@ -32,8 +32,10 @@ const ServicesWithDropDown: React.FC<ServicesLinksProps> = ({
                   scrolling
                     ? "text-black hover:text-mainColor"
                     : "text-white hover:text-babyBlueColor"
-                }  hover:underline  flex items-center gap-3 relative group ${
-                  i18n.language === "ar" ? "text-base md:text-md  xl:text-xl" : "text-base"
+                }  hover:underline  flex items-center gap-1 relative group ${
+                  i18n.language === "ar"
+                    ? "text-base md:text-md  xl:text-xl"
+                    : "text-base"
                 } `}
               >
                 <span> {item.name}</span>

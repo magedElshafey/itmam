@@ -50,10 +50,10 @@ const Navbar: React.FC<NavbarProps> = ({
           scrolling ? "bg-white shadow-md" : "bg-transparent"
         }`}
       >
-        <div className="container mx-auto px-4 sm:px-6  lg:px-8">
-          <div className="flex items-center justify-between gap-4">
+        <div className="container mx-auto px-4 xl:px-6   text-nowrap">
+          <div className="flex items-center justify-between gap-2">
             <Logo logo={scrolling ? darkLogo : whiteLogo} />
-            <ul className="hidden lg:flex items-center gap-4 lg:gap-5 ">
+            <ul className="hidden lg:flex items-center gap-4 xl:gap-5">
               <MainLinks scrolling={scrolling} />
               <ServicesLinks
                 services={services}
