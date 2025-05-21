@@ -38,6 +38,11 @@ export const footerLinks: Nav[] = [
         link: "/policy",
         id: 5,
       },
+      {
+        name: "Customer complaints",
+        link: "/customer-complaints",
+        id: 5,
+      },
     ],
   },
 ];

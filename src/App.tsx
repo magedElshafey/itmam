@@ -26,6 +26,7 @@ const Contact = lazy(() => import("./app/contact/page"));
 const Privacy = lazy(() => import("./app/privacy/page"));
 const Terms = lazy(() => import("./app/terms/page"));
 const Policy = lazy(() => import("./app/policy/page"));
+const CustomerComplaints = lazy(() => import("./app/customerComplaints/page"));
 const Callus = lazy(() => import("./app/callus/page"));
 const Lists = lazy(() => import("./app/lists/Lists"));
 const NotFound = lazy(() => import("./app/not-found/page"));
@@ -92,6 +93,7 @@ const App = () => {
         <Route path="/privacy" element={<Privacy />} />
         <Route path="/terms" element={<Terms />} />
         <Route path="/policy" element={<Policy />} />
+        <Route path="/customer-complaints" element={<CustomerComplaints />} />
         <Route
           path="/call-us"
           element={
