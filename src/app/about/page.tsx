@@ -13,7 +13,7 @@ import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import useFetchEmployee from "./api/useFetchEmployee";
 import Title from "../../components/common/title/Title";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import useExecutiveManagment from "../home/api/useExecutiveManagment";
 import useShareholders from "../home/api/useShareholders";
 import icon from "../../assets/detailsImg.png";
@@ -45,7 +45,7 @@ const AboutPage = () => {
     return {
       dots: false,
       autoplay: !isSingleItem,
-      autoplaySpeed: 1000,
+      autoplaySpeed: 3000,
       arrows: false,
       infinite: !isSingleItem,
       slidesToShow: isSingleItem ? 1 : 3,
@@ -101,7 +101,7 @@ const AboutPage = () => {
           </div>
         )}
         <div className="flex flex-col md:flex-row">
-          <div className="w-full md:w-1/2 bg-[#A56FCC] py-4 flex items-center bg-opacity-20">
+          <div className="w-full flex-1 bg-[#A56FCC] py-4 flex items-center bg-opacity-20">
             <div className="container mx-auto px-4 md:px-6 lg:px-8">
               <p
                 className={`font-bold text-xl md:text-2xl lg:text-3xl  mb-3 lg:mb-5 ${
@@ -131,7 +131,7 @@ const AboutPage = () => {
               </ul>
             </div>
           </div>
-          <div className="w-full md:w-1/2">
+          <div className="w-full md:w-1/3">
             <img
               alt="about"
               src={aboutData?.image || about}
@@ -145,41 +145,70 @@ const AboutPage = () => {
               <div className="my-4 md:my-6 lg:my-8 xl:my-12">
                 <Title title={t("shareholders")} />
               </div>
-              <div className="flex items-center justify-center gap-2 mb-4 md:mb-5 lg:mb-6 xl:mb-7 2xl:mb-8">
+              <div className="flex items-center md:justify-center gap-2 mb-4 md:mb-5 lg:mb-6 xl:mb-7 2xl:mb-8">
                 <div className="flex items-center gap-1">
-                  <p className="text-darkPurpleColor text-lg md:text-xl lg:text-2xl xl:text-3xl">
+                  <p
+                    className={`text-darkPurpleColor ${
+                      i18n.language === "ar"
+                        ? "text-lg md:text-xl lg:text-2xl xl:text-5xl"
+                        : "text-base md:text-md lg:text-lg xl:text-xl 2xl:text-2xl"
+                    } `}
+                  >
                     1
                   </p>
                   <img
                     alt="icon"
                     src={icon}
-                    className="w-5 h-5 object-contain"
+                    className="w-5 h-5 md:w-6 md:h-6 lg:w-7 lg:h-7 object-contain"
                     loading="lazy"
                   />
                 </div>
-                <p className="text-xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl">
+                <p
+                  className={`text-nowrap ${
+                    i18n.language === "ar"
+                      ? "text-xl md:text-2xl lg:text-3xl"
+                      : "text-base md:text-lg lg:text-xl"
+                  }`}
+                >
                   {shareholders[0]?.name}
                 </p>
               </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 lg:gap-8 xl:gap-10 2xl:gap-12">
-                {shareholders?.slice(1)?.map((item: any, index: number) => (
-                  <div key={index} className="flex items-center gap-2">
-                    <div className="flex items-center gap-1">
-                      <p className="text-darkPurpleColor text-lg md:text-xl lg:text-2xl xl:text-3xl">
-                        {index + 1}
+              <div className="w-full flex md:justify-center">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 lg:gap-8 xl:gap-10 2xl:gap-12">
+                  {shareholders?.slice(1)?.map((item: any, index: number) => (
+                    <div
+                      key={index}
+                      className="flex items-center gap-2 text-nowrap"
+                    >
+                      <div className="flex items-center gap-1">
+                        <p
+                          className={`text-darkPurpleColor ${
+                            i18n.language === "ar"
+                              ? "text-lg md:text-xl lg:text-2xl xl:text-5xl"
+                              : "text-base md:text-md lg:text-lg xl:text-xl 2xl:text-2xl"
+                          } `}
+                        >
+                          {index + 2}
+                        </p>
+                        <img
+                          alt="icon"
+                          src={icon}
+                          className="w-5 h-5 md:w-6 md:h-6 lg:w-7 lg:h-7 object-contain"
+                          loading="lazy"
+                        />
+                      </div>
+                      <p
+                        className={` text-nowrap ${
+                          i18n.language === "ar"
+                            ? "text-xl md:text-2xl lg:text-3xl"
+                            : "text-base md:text-lg lg:text-xl"
+                        }`}
+                      >
+                        {item?.name}
                       </p>
-                      <img
-                        alt="icon"
-                        src={icon}
-                        className="w-5 h-5 object-contain"
-                        loading="lazy"
-                      />
                     </div>
-                    <p className="text-xl md:text-2xl lg:text-3xl xl:text-4xl">
-                      {item?.name}
-                    </p>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
             </>
           ) : null}
@@ -193,18 +222,18 @@ const AboutPage = () => {
                   <div
                     dir={i18n.language === "ar" ? "rtl" : "ltr"}
                     key={item?.id}
-                    className="px-3 "
+                    className="px-3 relative duration-300 group overflow-hidden cursor-pointer"
                   >
                     <div className="">
                       <img
                         loading="lazy"
                         alt={item?.name}
                         src={item?.image}
-                        className="w-64 mx-auto h-64 cursor-pointer"
-                        onClick={() => navigate(`/about/${item?.id}`)}
+                        className="w-64 mx-auto h-64"
+                        // onClick={() => navigate(`/about/${item?.id}`)}
                       />
                     </div>
-                    <div className="mt-3 flex flex-col items-center justify-center text-mainColor text-center">
+                    <div className="my-3 flex flex-col items-center justify-center text-mainColor text-center">
                       <p
                         className={`text-lg md:text-xl lg:text-2xl   font-bold ${
                           i18n.language === "ar" ? "xl:text-4xl" : "xl:text-3xl"
@@ -219,6 +248,30 @@ const AboutPage = () => {
                       >
                         {item?.position}
                       </p>
+                    </div>
+                    <div
+                      className={`duration-300 absolute left-0 bottom-[-500%] group-hover:bottom-0 w-full h-full bg-black/60 flex flex-col items-center justify-center gap-4 p-3`}
+                    >
+                      <p
+                        className={`text-lg md:text-xl lg:text-2xl text-white font-bold ${
+                          i18n.language === "ar" ? "xl:text-4xl" : "xl:text-3xl"
+                        }`}
+                      >
+                        {item?.name}
+                      </p>
+                      <p
+                        className={`text-base md:textmd lg:text-lg text-center text-white ${
+                          i18n.language === "ar" ? "xl:text-2xl" : "xl:text-xl"
+                        }`}
+                      >
+                        {item?.position}
+                      </p>
+                      <Link
+                        to={`/about/${item?.id}`}
+                        className="overflow-hidden bg-darkPurpleColor flex items-center justify-center uppercase py-3 px-4 rounded-md text-white duration-300 hover:bg-white hover:text-darkPurpleColor w-fit mx-auto border border-darkPurpleColor"
+                      >
+                        {t("learn more")}
+                      </Link>
                     </div>
                   </div>
                 ))}
@@ -235,7 +288,7 @@ const AboutPage = () => {
                   <div
                     dir={i18n.language === "ar" ? "rtl" : "ltr"}
                     key={item?.id}
-                    className="px-3 "
+                    className="px-3 relative duration-300 group overflow-hidden cursor-pointer"
                   >
                     <div className="">
                       <img
@@ -261,6 +314,30 @@ const AboutPage = () => {
                       >
                         {item?.position}
                       </p>
+                    </div>
+                    <div
+                      className={`duration-300 absolute left-0 bottom-[-500%] group-hover:bottom-0 w-full h-full bg-black/60 flex flex-col items-center justify-center gap-4 p-3`}
+                    >
+                      <p
+                        className={`text-lg md:text-xl lg:text-2xl text-white font-bold ${
+                          i18n.language === "ar" ? "xl:text-4xl" : "xl:text-3xl"
+                        }`}
+                      >
+                        {item?.name}
+                      </p>
+                      <p
+                        className={`text-base md:textmd lg:text-lg text-center text-white ${
+                          i18n.language === "ar" ? "xl:text-2xl" : "xl:text-xl"
+                        }`}
+                      >
+                        {item?.position}
+                      </p>
+                      <Link
+                        to={`/about/${item?.id}`}
+                        className="overflow-hidden bg-darkPurpleColor flex items-center justify-center uppercase py-3 px-4 rounded-md text-white duration-300 hover:bg-white hover:text-darkPurpleColor w-fit mx-auto border border-darkPurpleColor"
+                      >
+                        {t("learn more")}
+                      </Link>
                     </div>
                   </div>
                 ))}
