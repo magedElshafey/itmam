@@ -12,3 +12,5 @@ export const getServiceById: string = "getServiceById";
 export const about: string = "abouts";
 export const employees: string = "job_hierarchy";
 export const lists: string = "financial_menus";
+export const executive_management: string = "executive_management";
+export const shareholders: string = "shareholders";

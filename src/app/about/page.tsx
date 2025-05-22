@@ -14,7 +14,9 @@ import Slider from "react-slick";
 import useFetchEmployee from "./api/useFetchEmployee";
 import Title from "../../components/common/title/Title";
 import { useNavigate } from "react-router-dom";
-
+import useExecutiveManagment from "../home/api/useExecutiveManagment";
+import useShareholders from "../home/api/useShareholders";
+import icon from "../../assets/detailsImg.png";
 interface Employee {
   id: number;
   name: string;
@@ -31,50 +33,60 @@ interface Employee {
 const AboutPage = () => {
   const { t, i18n } = useTranslation();
   const { isLoading, data: data } = useAbout();
-
+  const { isLoading: loadingExecutive, data: executives } =
+    useExecutiveManagment();
+  const { isLoading: loadingShareholders, data: shareholders } =
+    useShareholders();
   const { isLoading: loadingEmployee, data: employees } = useFetchEmployee();
   const navigate = useNavigate();
-  const settings = {
-    dots: false,
-    autoplay: true,
-    autoplaySpeed: 1000,
-    arrows: false,
-    infinite: true,
-    slidesToShow: 3,
-    verical: false,
-    slidesToScroll: 1,
-    rtl: i18n.language === "ar",
-    initialSlide: i18n.language === "ar" ? employees?.length - 1 : 0,
+  const getSliderSettings = (itemsLength: number) => {
+    const isSingleItem = itemsLength <= 1;
 
-    responsive: [
-      {
-        breakpoint: 1224,
-        settings: {
-          slidesToShow: 3,
+    return {
+      dots: false,
+      autoplay: !isSingleItem,
+      autoplaySpeed: 1000,
+      arrows: false,
+      infinite: !isSingleItem,
+      slidesToShow: isSingleItem ? 1 : 3,
+      slidesToScroll: 1,
+      rtl: i18n.language === "ar",
+      initialSlide:
+        i18n.language === "ar" && itemsLength > 0 ? itemsLength - 1 : 0,
+      responsive: [
+        {
+          breakpoint: 1224,
+          settings: {
+            slidesToShow: isSingleItem ? 1 : 3,
+          },
         },
-      },
-      {
-        breakpoint: 992,
-        settings: {
-          slidesToShow: 2,
+        {
+          breakpoint: 992,
+          settings: {
+            slidesToShow: isSingleItem ? 1 : 2,
+          },
         },
-      },
-
-      {
-        breakpoint: 540,
-        settings: {
-          slidesToShow: 1,
+        {
+          breakpoint: 540,
+          settings: {
+            slidesToShow: 1,
+          },
         },
-      },
-    ],
+      ],
+    };
   };
 
-  if (isLoading || loadingEmployee) {
+  if (isLoading || loadingEmployee || loadingExecutive || loadingShareholders) {
     return <Loader />;
   }
-  const values = data?.filter((item: About) => item?.type === "values");
-  const aboutData = data?.find((item: About) => item?.type === "about");
-  console.log("org_structure", aboutData?.org_structure);
+  const values = data?.filter((item: About) => item?.type === "values") || [];
+  const aboutData = data?.find((item: About) => item?.type === "about") || {
+    meta_title: "",
+    meta_description: "",
+    description: "",
+    org_structure: "",
+    image: "",
+  };
   return (
     <>
       <Head
@@ -128,44 +140,133 @@ const AboutPage = () => {
           </div>
         </div>
         <div className="container mx-auto px-8 md:px-16 lg:px-24 my-4 md:my-6 lg:my-8 xl:my-12">
-          <div className="my-4 md:my-6 lg:my-8 xl:my-12">
-            <Title title={t("Functional structure")} />
-          </div>
-          <Slider {...settings}>
-            {employees?.map((item: Employee) => (
-              <div
-                dir={i18n.language === "ar" ? "rtl" : "ltr"}
-                key={item?.id}
-                className="px-3 "
-              >
-                <div className="">
+          {shareholders?.length ? (
+            <>
+              <div className="my-4 md:my-6 lg:my-8 xl:my-12">
+                <Title title={t("shareholders")} />
+              </div>
+              <div className="flex items-center justify-center gap-2 mb-4 md:mb-5 lg:mb-6 xl:mb-7 2xl:mb-8">
+                <div className="flex items-center gap-1">
+                  <p className="text-darkPurpleColor text-lg md:text-xl lg:text-2xl xl:text-3xl">
+                    1
+                  </p>
                   <img
+                    alt="icon"
+                    src={icon}
+                    className="w-5 h-5 object-contain"
                     loading="lazy"
-                    alt={item?.name}
-                    src={item?.image}
-                    className="w-64 mx-auto h-64 cursor-pointer"
-                    onClick={() => navigate(`/about/${item?.id}`)}
                   />
                 </div>
-                <div className="mt-3 flex flex-col items-center justify-center text-mainColor text-center">
-                  <p
-                    className={`text-lg md:text-xl lg:text-2xl   font-bold ${
-                      i18n.language === "ar" ? "xl:text-4xl" : "xl:text-3xl"
-                    }`}
-                  >
-                    {item?.name}
-                  </p>
-                  <p
-                    className={`text-base md:textmd lg:text-lg  ${
-                      i18n.language === "ar" ? "xl:text-2xl" : "xl:text-xl"
-                    }`}
-                  >
-                    {item?.position}
-                  </p>
-                </div>
+                <p className="text-xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl">
+                  {shareholders[0]?.name}
+                </p>
               </div>
-            ))}
-          </Slider>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 lg:gap-8 xl:gap-10 2xl:gap-12">
+                {shareholders?.slice(1)?.map((item: any, index: number) => (
+                  <div key={index} className="flex items-center gap-2">
+                    <div className="flex items-center gap-1">
+                      <p className="text-darkPurpleColor text-lg md:text-xl lg:text-2xl xl:text-3xl">
+                        {index + 1}
+                      </p>
+                      <img
+                        alt="icon"
+                        src={icon}
+                        className="w-5 h-5 object-contain"
+                        loading="lazy"
+                      />
+                    </div>
+                    <p className="text-xl md:text-2xl lg:text-3xl xl:text-4xl">
+                      {item?.name}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </>
+          ) : null}
+          {employees?.length ? (
+            <>
+              <div className="my-4 md:my-6 lg:my-8 xl:my-12">
+                <Title title={t("Functional structure")} />
+              </div>
+              <Slider {...getSliderSettings(employees?.length || 0)}>
+                {employees?.map((item: Employee) => (
+                  <div
+                    dir={i18n.language === "ar" ? "rtl" : "ltr"}
+                    key={item?.id}
+                    className="px-3 "
+                  >
+                    <div className="">
+                      <img
+                        loading="lazy"
+                        alt={item?.name}
+                        src={item?.image}
+                        className="w-64 mx-auto h-64 cursor-pointer"
+                        onClick={() => navigate(`/about/${item?.id}`)}
+                      />
+                    </div>
+                    <div className="mt-3 flex flex-col items-center justify-center text-mainColor text-center">
+                      <p
+                        className={`text-lg md:text-xl lg:text-2xl   font-bold ${
+                          i18n.language === "ar" ? "xl:text-4xl" : "xl:text-3xl"
+                        }`}
+                      >
+                        {item?.name}
+                      </p>
+                      <p
+                        className={`text-base md:textmd lg:text-lg  ${
+                          i18n.language === "ar" ? "xl:text-2xl" : "xl:text-xl"
+                        }`}
+                      >
+                        {item?.position}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </Slider>
+            </>
+          ) : null}
+          {executives?.length ? (
+            <>
+              <div className="my-4 md:my-6 lg:my-8 xl:my-12">
+                <Title title={t("Executive management")} />
+              </div>
+              <Slider {...getSliderSettings(executives?.length || 0)}>
+                {executives?.map((item: Employee) => (
+                  <div
+                    dir={i18n.language === "ar" ? "rtl" : "ltr"}
+                    key={item?.id}
+                    className="px-3 "
+                  >
+                    <div className="">
+                      <img
+                        loading="lazy"
+                        alt={item?.name}
+                        src={item?.image}
+                        className="w-64 mx-auto h-64 cursor-pointer"
+                        onClick={() => navigate(`/about/${item?.id}`)}
+                      />
+                    </div>
+                    <div className="mt-3 flex flex-col items-center justify-center text-mainColor text-center">
+                      <p
+                        className={`text-lg md:text-xl lg:text-2xl   font-bold ${
+                          i18n.language === "ar" ? "xl:text-4xl" : "xl:text-3xl"
+                        }`}
+                      >
+                        {item?.name}
+                      </p>
+                      <p
+                        className={`text-base md:textmd lg:text-lg  ${
+                          i18n.language === "ar" ? "xl:text-2xl" : "xl:text-xl"
+                        }`}
+                      >
+                        {item?.position}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </Slider>
+            </>
+          ) : null}
 
           <div className="my-4 md:my-6 lg:my-8 xl:my-12">
             <Title title={t("Organizational structure")} />
